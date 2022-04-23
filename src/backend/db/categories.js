@@ -8,9 +8,9 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "Computer Programming",
+    categoryName: "DSA",
     description:
-      "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
+      "The term Data Structure refers to the storage and organization of data. The efficiency of software development depends on the choice of an appropriate data structure and algorithm.",
   },
   {
     _id: uuid(),
@@ -23,5 +23,5 @@ export const categories = [
     categoryName: "Backend Development",
     description:
       "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
-  },
+  }
 ];

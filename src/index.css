@@ -1,13 +1,71 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.auth-container {
+  display: grid;
+  grid-template-columns: auto;
+  place-items: center;
+  justify-content: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.signUpLinks {
+  font-size: 1rem;
+  text-align: center;
+  color: var(--primary-color);
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 6px;
+  grid-auto-flow: column;
+  display: grid;
+}
+
+.form-heading {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.error-message {
+  color: var(--primary-color);
+}
+
+
+.nav-container {
+  color: black !important;
+  display: grid;
+  grid-template-columns: 20% 85%;
+}
+
+.nav-container .sidebar {
+  margin-top: 2rem;
+  overflow: hidden;
+}
+
+.sidebar-nav-link {
+  white-space: nowrap;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.nav-icon {
+  margin-right: 5px;
+  color: var(--primary-color);
+}
+
+.filters {
+  display: inline-flex;
+  justify-content: left;
+  margin-top: 2rem;
+  color: var(--ternary-color);
+  width: 90%;
+}
+
+.filter {
+  background-color: var(--primary-color);
+  padding: 5px;
+  font-size: large;
+  text-align: center;
+  line-height: 2rem;
+  border-radius: 10%;
+  width: 5rem;
+  height: 2rem;
+  margin-left: 2rem;
 }
