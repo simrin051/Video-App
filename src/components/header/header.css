@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Cedarville Cursive');
+
+.nav-header {
+    display: grid;
+}
+
+.nav-brand {
+    grid-column: 1 / 2;
+    color: var(--primary-color);
+}
+
+span {
+    font-family: 'Cedarville Cursive';
+    font-size: 22px;
+}
+
+.nav-brand img {
+    height: 4rem;
+}
+
+.login-icon {
+    grid-column: 4;
+    text-align: right;
+    margin-right: 4rem;
+    font-size: 3rem;
+    color: var(--primary-color);
+}
