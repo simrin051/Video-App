@@ -1,11 +1,17 @@
 
 import ReactPlayer from 'react-player';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const VideoListCard = ({ video }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
 
-    return (<div className="video-thumbnail-view">
+    const toVideoDetailPage = (video) => {
+        navigate('/video', { state: { video } });
+    }
+
+    return (<div className="video-thumbnail-view" onClick={() => { toVideoDetailPage(video) }}>
         <img class="video"
             src={video.thumbNail} title="YouTube video player" alt="not loading"
         />

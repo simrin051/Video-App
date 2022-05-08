@@ -1,12 +1,16 @@
 import { Header } from "../components/header/header";
-import { VideoItemCard } from "../components/VideoItemCard/VideoItemCard";
 import { VideoListCard } from "../components/VideoItemCard/VideoListCard";
 import { useVideoContext } from "../contexts/videos";
+
 export const Home = () => {
     const { state, videoDispatch } = useVideoContext();
+    let videoList = state.videoList;
 
-    const videoList = state.videoList;
-    console.log(" video list length " + videoList.length);
+    const getFilteredData = (videoList) => {
+        return videoList.filter(video => video.categoryName == state.filterByCategory)
+    }
+
+    videoList = getFilteredData(videoList);
     const skills = ['Reading', 'Writing', 'Speaking', 'Listening'];
     return (
         <div>
@@ -23,7 +27,12 @@ export const Home = () => {
                     <div class="filters">
                         {skills.map((skill) => {
                             return (
-                                <span class="filter" value={skill}>{skill}</span>
+                                <span class="filter" value={skill} onClick={() => {
+                                    videoDispatch({
+                                        type: 'FILTER_BY_CATEGORY',
+                                        payload: { skill }
+                                    })
+                                }}>{skill}</span>
                             )
                         })}
                     </div>
@@ -35,6 +44,6 @@ export const Home = () => {
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
