@@ -15,3 +15,11 @@ export const formsReducer = (state, action) => {
     }
 }
 
+export const videoStateReducer = (state, { type, payload }) => {
+
+    switch (type) {
+        case "GET_VIDEOS": return { ...state, videoList: payload };
+        case "FILTER_BY_CATEGORY": return { ...state, videoList: payload };
+        default: return state;
+    }
+}

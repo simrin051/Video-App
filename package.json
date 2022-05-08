@@ -9,7 +9,9 @@
     "miragejs": "^0.1.43",
     "mockman-js": "^1.1.5",
     "react": "^18.0.0",
+    "react-bootstrap": "^2.3.1",
     "react-dom": "^18.0.0",
+    "react-player": "^2.10.0",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "uuid": "^8.3.2"

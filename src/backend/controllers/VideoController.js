@@ -11,6 +11,7 @@ import { Response } from "miragejs";
  * */
 
 export const getAllVideosHandler = function () {
+  console.log("reached backend for fetching videos");
   try {
     return new Response(200, {}, { videos: this.db.videos });
   } catch (error) {

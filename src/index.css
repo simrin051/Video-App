@@ -31,7 +31,7 @@
 .nav-container {
   color: black !important;
   display: grid;
-  grid-template-columns: 20% 85%;
+  grid-template-columns: 20% 80%;
 }
 
 .nav-container .sidebar {
@@ -56,6 +56,7 @@
   margin-top: 2rem;
   color: var(--ternary-color);
   width: 90%;
+  height: min-content;
 }
 
 .filter {
@@ -68,4 +69,123 @@
   width: 5rem;
   height: 2rem;
   margin-left: 2rem;
+}
+
+.dislike-btn {
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.video-player {
+  height: 70vw;
+  margin-left: 16rem;
+}
+
+.action-btns {
+  display: grid;
+  align-items: stretch;
+  justify-content: space-between;
+  grid-template-columns: repeat(4, 1fr);
+  position: absolute;
+  background-color: #F5FFFA;
+  width: 40rem;
+  text-align: center;
+}
+
+.action-btns i {
+  padding: 5px;
+}
+
+.nav-icon span {
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
+.video-detail {
+  display: flex;
+  align-items: center;
+  width: 40rem;
+  margin-top: 1rem;
+}
+
+.video-detail img {
+  background-color: red;
+  width: 2rem;
+  border-radius: 50%;
+}
+
+.video-detail .thumbnail-title {
+  width: 10rem;
+  color: var(--primary-color);
+  font-size: medium;
+  margin-left: 5px;
+}
+
+hr {
+  width: 40rem;
+  position: absolute;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.center {
+  background: lightblue;
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.video-list-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.video-channel-details {
+  background: lightblue;
+  font-size: 5px;
+  border-radius: 5px;
+  width: 30rem;
+  height: 4rem;
+  display: inline-block;
+}
+
+.video-channel-details .action-btn {
+  margin-right: 5px;
+  float: right;
+  margin-top: 2px;
+  font-size: 1rem;
+}
+
+.video-channel-details img {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 5px;
+}
+
+.video-channel-details span {
+  font-size: 1rem;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.video-channel-details .menu-icon {
+  display: block;
+  padding: 5px;
+  background-color: lightblue;
+  color: black;
+  margin-left: -8rem;
+  margin-top: -1rem;
+  position: absolute;
+}
+
+.menu-icon .menu-nav-icon {
+  padding: 5px;
+  border-bottom: 1px solid black;
 }

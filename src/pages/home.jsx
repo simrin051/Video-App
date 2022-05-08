@@ -1,6 +1,13 @@
-import { Header } from "../components/header/header"
-
+import { Header } from "../components/header/header";
+import { VideoItemCard } from "../components/VideoItemCard/VideoItemCard";
+import { VideoListCard } from "../components/VideoItemCard/VideoListCard";
+import { useVideoContext } from "../contexts/videos";
 export const Home = () => {
+    const { state, videoDispatch } = useVideoContext();
+
+    const videoList = state.videoList;
+    console.log(" video list length " + videoList.length);
+    const skills = ['Reading', 'Writing', 'Speaking', 'Listening'];
     return (
         <div>
             <Header />
@@ -12,13 +19,22 @@ export const Home = () => {
                     <li><a class="sidebar-nav-link" href="#alerts"><i class="nav-icon fa-solid fa-clock"></i>Watch Later</a></li>
                     <li><a class="sidebar-nav-link" href="#alerts"><i class="nav-icon fa-solid fa-clock-rotate-left"></i>History</a></li>
                 </ul>
-                <div class="filters">
-                    <span class="filter">Reading</span>
-                    <span class="filter">Writing</span>
-                    <span class="filter">Speaking</span>
-                    <span class="filter">Listening</span>
+                <div class="video-container">
+                    <div class="filters">
+                        {skills.map((skill) => {
+                            return (
+                                <span class="filter" value={skill}>{skill}</span>
+                            )
+                        })}
+                    </div>
+                    <div class="video-list-container">
+                        {videoList.map((video) => {
+                            return <VideoListCard video={video}></VideoListCard>
+                        })}
+                    </div>
                 </div>
             </div>
-        </div >
+
+        </div>
     )
 }

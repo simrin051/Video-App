@@ -6,6 +6,10 @@ import { useReducer } from "react";
 import { formsReducer } from '../reducers/reducer';
 import { onInputChange } from './AuthUtils';
 
+const checkLogin = () => {
+    console.log("inside check llgin");
+}
+
 export const SignIn = () => {
 
     const initialState = {
@@ -49,7 +53,7 @@ export const SignIn = () => {
                         <div className="error-message">{formState.password.error}</div>
                     )}
                     <div className="authenticate">
-                        <button type="button" className="Login btn  btn-block btn-lg rounded-0">Login</button>
+                        <button type="button" className="Login btn  btn-block btn-lg rounded-0" onClick={checkLogin}>Login</button>
                     </div>
                 </form>
                 <div className="signUpLinks">
