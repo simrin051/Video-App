@@ -24,3 +24,19 @@ export const FetchPlayList = async (videoDispatch) => {
         console.log(e.error);
     }
 }
+
+
+export const FetchCategories = async (videoDispatch) => {
+    console.log("inside video servce");
+    try {
+        const res = await axios.get("/api/categories");
+        if (res.status === 200)
+            videoDispatch({
+                type: "GET_CATEGORIES",
+                payload: res.data.categories,
+            });
+    } catch (e) {
+        console.log(e.error);
+    }
+
+}

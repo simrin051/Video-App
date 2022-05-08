@@ -9,9 +9,13 @@ export const Home = () => {
     const getFilteredData = (videoList) => {
         return videoList.filter(video => video.categoryName == state.filterByCategory)
     }
+    const getCategories = () => {
+        return state.categoryList.map(category => category.categoryName);
+    }
 
-    videoList = getFilteredData(videoList);
-    const skills = ['Reading', 'Writing', 'Speaking', 'Listening'];
+    videoList = state.filterByCategory ? getFilteredData(videoList) : videoList;
+    const skills = getCategories();
+    console.log(" Skills " + skills);
     return (
         <div>
             <Header />

@@ -1,26 +1,71 @@
-export const formsReducer = (state, action) => {
-    switch (action.type) {
-        case "UPDATE_FORM":
-            const { name, value, hasError, error, isFormValid } = action.data
-            console.log("Action Data " + JSON.stringify(action.data));
-            return {
-                ...state,
-                // update the state of the particular field,
-                // by retaining the state of other fields
-                [name]: { ...state[name], value, hasError, error },
-                isFormValid,
-            }
-        default:
-            return state
-    }
-}
-
 export const videoStateReducer = (state, { type, payload }) => {
     console.log("inside video state reducer");
     console.log(type + " ** " + payload);
     switch (type) {
+        case "GET_CATEGORIES": return { ...state, categoryList: payload };
         case "GET_VIDEOS": return { ...state, videoList: payload };
         case "FILTER_BY_CATEGORY": return { ...state, filterByCategory: payload.skill };
         default: return state;
+    }
+}
+
+export const authenticationReducer = (state, { type, payload }) => {
+    switch (type) {
+        case "LOGIN_USER": return {
+            ...state,
+            token: payload.token,
+            userName: payload.userName
+        }
+        case "SIGNUP_USER": return {
+            ...state, token: payload.token,
+            userName: payload.userName
+        }
+        default: return state;
+    }
+}
+
+export const formsReducer = (state, { type, payload }) => {
+    switch (type) {
+        case "SET_FIRSTNAME": return {
+            ...state,
+            firstName: payload
+        }
+        case "SET_LASTNAME": return {
+            ...state,
+            lastName: payload
+        }
+        case "SET_EMAIL": return {
+            ...state,
+            email: payload
+        }
+        case "SET_PASSWORD": return {
+            ...state,
+            password: payload
+        }
+        default:
+            break;
+    }
+}
+
+export const errorReducer = (state, { payload, type }) => {
+    switch (type) {
+        case "ERROR_FIRSTNAME": return {
+            ...state,
+            firstName: payload
+        }
+        case "ERROR_LASTNAME": return {
+            ...state,
+            lastName: payload
+        }
+        case "ERROR_EMAIL": return {
+            ...state,
+            email: payload
+        }
+        case "ERROR_PASSWORD": return {
+            ...state,
+            password: payload
+        }
+        default:
+            break;
     }
 }

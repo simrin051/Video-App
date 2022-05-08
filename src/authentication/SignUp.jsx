@@ -1,142 +1,167 @@
-import { useState, useReducer } from "react";
-import { createUser } from "../services/auth";
-import { InputText, InputPassword } from '../components/FormFields/InputField';
-import { Header } from "../components/header/header";
+import { useReducer } from "react";
+import { InputText, InputPassword } from './../components/FormFields/InputField';
+import { useLocation } from 'react-router-dom';
+import { useUserContext } from "./../contexts/user";
 import { formsReducer } from './../reducers/reducer';
-import { onInputChange } from "./AuthUtils";
-
-const errorState = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: ""
-}
+import { errorReducer } from './../reducers/reducer';
 
 export const SignUp = () => {
 
-
+    const state = useLocation();
+    const fromPathNavigate = state.from ? state.from : '/';
     const initialState = {
-        firstName: { value: "", hasError: false, error: "" },
-        lastName: { value: "", hasError: false, error: "" },
-        email: { value: "", hasError: true, error: "" },
-        password: { value: "", hasError: true, error: "" },
-        isFormValid: false,
-    }
-    const [formState, dispatch] = useReducer(formsReducer, initialState);
-
-    const validEmailRegex = RegExp(
-        /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-    );
-
-    const handleChange = (event) => {
-        console.log("inside handle change");
-        const { id, value } = event.target;
-        if (id === "FirstName") {
-            console.log("inside if");
-            if (value.length == 0) {
-                console.log("Firstname and lastname is empty");
-                errorState.firstName = 'FirstName should not be empty';
-                errorState.lastName = 'LastName should not be empty';
-            } else {
-                errorState.firstName = null;
-            }
-            setInputValues({ ...inputValues, firstName: value });
-        }
-        if (id === "LastName") {
-            console.log("inside if");
-            if (value.length == 0) {
-                console.log("Firstname and lastname is empty");
-                errorState.lastName = 'LastName should not be empty';
-            } else {
-                errorState.lastName = null;
-            }
-            setInputValues({ ...inputValues, lastName: value });
-        }
-        if (id == "Password") {
-            if (value.length < 8) {
-                console.log("value length < 8");
-                errorState.password = 'Password length should be greater than or equal to 8';
-            } else {
-                errorState.password = null;
-            }
-            setInputValues({ ...inputValues, password: value })
-        }
-
-        if (id == "Email") {
-            if (!validEmailRegex.test(value)) {
-                errorState.email = 'Email ID is invalid';
-            } else {
-                errorState.email = null;
-            }
-            setInputValues({ ...inputValues, email: value })
-        }
-    }
-    const [inputValues, setInputValues] = useState({
         firstName: "",
         lastName: "",
         email: "",
         password: ""
-    });
+    }
+    const errorInitialState = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: ""
+    }
+    const [formState, formDispatch] = useReducer(formsReducer, initialState);
+    const [errorState, errorDispatch] = useReducer(errorReducer, errorInitialState);
+    const validEmailRegex = RegExp(
+        /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+    );
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const { signUpUser } = useUserContext();
+
+    const onFocusClearError = (type) => {
+        errorDispatch({
+            type: type,
+            payload: ""
+        })
+    }
+
+    const HandleSubmit = (e) => {
+        var errorFlag = false;
+        e.preventDefault();
         const authPayload = {
-            firstName: formState.firstName.value,
-            lastName: formState.lastName.value,
-            email: formState.email.value,
-            password: formState.password.value
+            firstName: formState.firstName,
+            lastName: formState.lastName,
+            email: formState.email,
+            password: formState.password
         }
-        createUser(authPayload);
-        console.log("Form Data " + JSON.stringify(authPayload));
-        // ... submit to API or something
-    };
-
+        const checkForFormValidity = () => {
+            if (!validEmailRegex.test(formState.email)) {
+                errorDispatch({
+                    type: "ERROR_EMAIL",
+                    payload: "Please enter valid email"
+                })
+                errorFlag = true;
+            }
+            if (formState.password === '' || formState.password.length < 8) {
+                errorDispatch({
+                    type: "ERROR_PASSWORD",
+                    payload: "Please enter password of length equal to greater than 8"
+                })
+                errorFlag = true;
+            }
+            if (formState.firstName == '') {
+                errorDispatch({
+                    type: "ERROR_FIRSTNAME",
+                    payload: "Please enter firstname"
+                })
+                errorFlag = true;
+            } else if (formState.firstName.length < 2) {
+                errorDispatch({
+                    type: "ERROR_FIRSTNAME_LENGTH",
+                    payload: "Please enter firstname longer than 2 letters"
+                })
+                errorFlag = true;
+            }
+            if (formState.lastName == '') {
+                errorDispatch({
+                    type: "ERROR_LASTNAME",
+                    payload: "Please enter lastname"
+                })
+                errorFlag = true;
+            } else if (formState.lastName.length < 2) {
+                errorDispatch({
+                    type: "ERROR_LASTNAME_LENGTH",
+                    payload: "Please enter lastname longer than 2 letters"
+                })
+                errorFlag = true;
+            }
+        }
+        checkForFormValidity()
+        if (!errorFlag) {
+            signUpUser(authPayload, fromPathNavigate);
+        };
+    }
     return (
         <div>
-            <Header />
             <div className='auth-container'>
-                <h2 className="form-heading">Create my Account</h2>
+                <h2 className="form-heading">SIGN{" "}UP</h2>
                 <form id="submit-form" class="form-container">
                     <InputText
                         id={"FirstName"}
-                        value={formState.firstName.value}
-                        onChange={(e) => onInputChange("firstName", e.target.value, dispatch, formState)
-                        }
+                        value={formState.firstName}
+                        required
+                        onChange={(e) =>
+                            formDispatch({
+                                type: 'SET_FIRSTNAME',
+                                payload: e.target.value
+                            })}
+                        onFocus={(e) => {
+                            onFocusClearError('ERROR_FIRSTNAME');
+                        }}
                         label={"First Name"}
                     />
-                    <span className="text-invalid-msg">{errorState.firstName}</span>
+                    <small class="incorrectcredentials">{errorState && errorState.firstName}</small>
                     <InputText
                         id={"LastName"}
-                        value={formState.lastName.value}
-                        onChange={(e) => onInputChange("lastName", e.target.value, dispatch, formState)}
+                        value={formState.lastName}
+                        required
+                        onChange={(e) =>
+                            formDispatch({
+                                type: 'SET_LASTNAME',
+                                payload: e.target.value
+                            })}
+                        onFocus={() => {
+                            onFocusClearError('ERROR_LASTNAME');
+                        }}
                         label={"Last Name"}
                     />
-                    <span className="text-invalid-msg">{errorState.lastName}</span>
+                    <small class="incorrectcredentials">{errorState && errorState.lastName}</small>
                     <InputText
                         id={"Email"}
-                        value={formState.email.value}
+                        value={formState.email}
+                        required
                         onChange={(e) => {
-                            onInputChange("email", e.target.value, dispatch, formState)
+                            formDispatch({
+                                type: 'SET_EMAIL',
+                                payload: e.target.value
+                            })
+                        }}
+                        onFocus={() => {
+                            onFocusClearError('ERROR_EMAIL');
                         }}
                         label={"Email"}
                     />
-                    {formState.email.hasError && (
-                        <div className="error-message">{formState.email.error}</div>
-                    )}
+                    <small class="incorrectcredentials">{errorState && errorState.email}</small>
                     <InputPassword
                         id={"Password"}
-                        value={formState.password.value}
+                        value={formState.password}
+                        required
                         onChange={(e) => {
-                            onInputChange("password", e.target.value, dispatch, formState)
+                            formDispatch({
+                                type: 'SET_PASSWORD',
+                                payload: e.target.value
+                            })
+                        }}
+                        onFocus={() => {
+                            onFocusClearError('ERROR_PASSWORD');
                         }}
                         label={"Password"}
                     />
-                    {formState.password.hasError && (
-                        <div className="error-message">{formState.password.error}</div>
-                    )}
-                    <button type="submit" className="button" onClick={handleSubmit}>Signup</button>
+                    <small class="incorrectcredentials">{errorState && errorState.password}</small>
+                    <button type="submit" id="signup-btn" className="button" onClick={HandleSubmit}>Signup</button>
                 </form>
             </div >
         </div>
     )
-};
+}
