@@ -189,3 +189,34 @@ hr {
   padding: 5px;
   border-bottom: 1px solid black;
 }
+
+.card-horizontal {
+  background-color: #F5FFFA;
+}
+
+.video-delete-icon {
+  float: right;
+  top: 0px;
+}
+
+.video-delete-icon {
+  display: inline-block;
+  margin-left: 15rem;
+}
+
+.card-horizontal .card-container-horizontal .image-badge-container img {
+  height: 8rem;
+}
+
+.card-horizontal {
+  height: 8rem;
+  width: 30rem;
+  border: 5px solid var(--primary-color);
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.watch-later-list h2 {
+  color: var(--primary-color);
+  text-align: center;
+}

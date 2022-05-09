@@ -8,7 +8,8 @@ const VideoContextProvider = ({ children }) => {
     const initialVideoState = {
         videoList: [],
         filterByCategory: '',
-        categoryList: []
+        categoryList: [],
+        itemsInWatchLaterList: []
     };
 
     const [state, videoDispatch] = useReducer(

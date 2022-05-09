@@ -6,6 +6,7 @@ import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 import { VideoContextProvider } from "./contexts/videos";
 import { UserContextProvider } from "./contexts/user";
+import { ToastContainer } from 'react-toastify';
 
 // Call make Server
 makeServer();
@@ -13,9 +14,11 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <UserContextProvider>
+      <UserContextProvider
+      >
         <VideoContextProvider>
           <App />
+          <ToastContainer />
         </VideoContextProvider>
       </UserContextProvider>
     </Router>

@@ -30,6 +30,7 @@ export const UserContextProvider = ({ children }) => {
                     type: 'LOGIN_USER',
                     payload: { token: response.data.encodedToken, userName: response.data.createdUser.email }
                 });
+                console.log(" respose data encoded token " + response.data.encodedToken);
                 axios.defaults.headers.common['Authorization'] = response.data.encodedToken;
                 navigation(fromPathNavigate);
             }

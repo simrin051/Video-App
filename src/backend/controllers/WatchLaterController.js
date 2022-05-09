@@ -13,6 +13,7 @@ import { requiresAuth } from "../utils/authUtils";
  * */
 
 export const getWatchLaterVideosHandler = function (schema, request) {
+  console.log(" Request JSON " + JSON.stringify(request));
   const user = requiresAuth.call(this, request);
   try {
     if (!user) {
@@ -43,7 +44,10 @@ export const getWatchLaterVideosHandler = function (schema, request) {
  * */
 
 export const addItemToWatchLaterVideos = function (schema, request) {
+  console.log("inside add item to watch later videos ");
+  console.log(" request " + JSON.stringify(request));
   const user = requiresAuth.call(this, request);
+  console.log(" User " + user);
   if (user) {
     const { video } = JSON.parse(request.requestBody);
     if (user.watchlater.some((item) => item.id === video.id)) {
