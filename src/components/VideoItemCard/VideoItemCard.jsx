@@ -12,7 +12,7 @@ export const VideoItemCard = () => {
     const params = location.state;
 
     return (<div className="video-player">
-        <ReactPlayer class="video" controls height="40rem"
+        <ReactPlayer class="video" controls height="20rem"
             url={params.video.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         />
         <ActionButton></ActionButton>

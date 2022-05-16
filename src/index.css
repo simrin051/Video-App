@@ -78,7 +78,9 @@
 
 .video-player {
   height: 70vw;
-  margin-left: 16rem;
+  margin-top: 2rem;
+  margin-left: 20rem;
+  margin-right: 10rem;
 }
 
 .action-btns {
@@ -103,22 +105,21 @@
 
 .video-detail {
   display: flex;
-  align-items: center;
   width: 40rem;
   margin-top: 1rem;
 }
 
 .video-detail img {
   background-color: red;
-  width: 2rem;
-  border-radius: 50%;
+  width: 4rem;
+
 }
 
 .video-detail .thumbnail-title {
-  width: 10rem;
   color: var(--primary-color);
   font-size: medium;
   margin-left: 5px;
+  white-space: nowrap;
 }
 
 hr {

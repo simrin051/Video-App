@@ -69,7 +69,6 @@ export const addToWatchLaterList = async (video, videoDispatch, videoList) => {
         isVideoAddedToWatchLaterList(video, videoList);
         const res = await axios.post("/api/user/watchlater", { video });
         if (res.status === 201) {
-            console.log(" response status as 201");
             videoDispatch({
                 type: "ADD_TO_WATCHLATER_LIST",
                 payload: res.data.watchlater
