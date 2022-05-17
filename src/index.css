@@ -221,3 +221,35 @@ hr {
   color: var(--primary-color);
   text-align: center;
 }
+
+.playlist {
+  color: var(--primary-color);
+  font-size: medium;
+  position: absolute;
+  margin-left: 16rem;
+  margin-top: 2rem;
+  z-index: 1;
+  list-style: none;
+  background-color: #FBFBF9;
+}
+
+.playlist-item {
+  background-color: #FBFBF9;
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.playlist-create input {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px;
+  display: block;
+  position: relative;
+  background-color: #FBFBF9;
+}
+
+.playlist-create button {
+  margin-top: 5px;
+  margin-left: 5px;
+}

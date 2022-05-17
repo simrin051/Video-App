@@ -1,6 +1,7 @@
 import ReactPlayer from 'react-player';
 import { ActionButton } from './../ActionButton';
 import { useLocation } from 'react-router-dom';
+import { useVideoContext } from '../../contexts/videos';
 
 const state = {
     isOpen: false
@@ -10,7 +11,9 @@ export const VideoItemCard = () => {
 
     const location = useLocation();
     const params = location.state;
-
+    const { state, videoDispatch } = useVideoContext();
+    const playlistDropdown = state.itemsInPlayList;
+    console.log(" playlist dropdown " + JSON.stringify(playlistDropdown));
     return (<div className="video-player">
         <ReactPlayer class="video" controls height="20rem"
             url={params.video.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

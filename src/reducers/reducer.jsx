@@ -8,6 +8,7 @@ export const videoStateReducer = (state, { type, payload }) => {
         case "GET_WATCHLATER_LIST": return { ...state, itemsInWatchLaterList: payload }
         case 'ADD_TO_WATCHLATER_LIST': return { ...state, itemsInWatchLaterList: payload }
         case 'REMOVE_FROM_WATCHLATER_LIST': return { ...state, itemsInWatchLaterList: payload }
+        case 'GET_PLAYLIST': return { ...state, itemsInPlayList: payload }
         default: return state;
     }
 }

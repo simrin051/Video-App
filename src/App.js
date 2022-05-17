@@ -24,7 +24,7 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/videoList" element={<VideoListCard />} />
-        <Route path="/mock" element={<Mockman endPointsList={["/api/auth/signup", "/api/videos"]} />} />
+        <Route path="/mock" element={<Mockman endPointsList={["/api/auth/signup", "/api/videos", "/api/user/playlist"]} />} />
         <Route path="/watchlater" element={<WishLaterList />} />
       </Routes>
     </div>

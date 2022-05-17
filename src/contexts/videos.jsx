@@ -1,7 +1,7 @@
 
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { videoStateReducer } from "../reducers/reducer";
-import { FetchCategories, FetchVideoList } from './../services/video-service';
+import { FetchCategories, FetchVideoList, getAllPlayList } from './../services/video-service';
 
 const VideoContext = createContext();
 const VideoContextProvider = ({ children }) => {
@@ -9,7 +9,8 @@ const VideoContextProvider = ({ children }) => {
         videoList: [],
         filterByCategory: '',
         categoryList: [],
-        itemsInWatchLaterList: []
+        itemsInWatchLaterList: [],
+        itemsInPlayList: []
     };
 
     const [state, videoDispatch] = useReducer(
@@ -20,6 +21,7 @@ const VideoContextProvider = ({ children }) => {
     useEffect(() => {
         FetchVideoList(videoDispatch);
         FetchCategories(videoDispatch);
+        getAllPlayList(videoDispatch);
     }, []);
     return (
         <VideoContext.Provider value={{ state, videoDispatch }}>

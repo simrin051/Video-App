@@ -81,7 +81,6 @@ export const addToWatchLaterList = async (video, videoDispatch, videoList) => {
 
 
 export const removeFromWatchLaterList = async (video, videoDispatch) => {
-    console.log("Inside video service -> remove from watch list");
     try {
         const res = await axios.delete(`/api/user/watchlater/${video._id}`);
         if (res.status === 200) {
@@ -94,4 +93,33 @@ export const removeFromWatchLaterList = async (video, videoDispatch) => {
     } catch (e) {
         console.log(e.error);
     }
+}
+
+export const getAllPlayList = async (videoDispatch) => {
+    try {
+        console.log("inside get all playlists service");
+        const res = await axios.get("/api/user/watchlater");
+        if (res.status === 200)
+            videoDispatch({
+                type: "GET_PLAYLIST",
+                payload: res.playlists
+            });
+    } catch (e) {
+        console.log(e.error);
+    }
+
+}
+
+export const AddToNewPlaylist = (title, description) => {
+    try {
+        console.log("inside get all playlists service");
+        const res = axios.get("/api/user/playlists", {
+            playlist: { title: "foo", description: "bar bar bar" }
+        });
+        if (res.status === 200) { }
+
+    } catch (e) {
+        console.log(e.error);
+    }
+
 }

@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 
 export const requiresAuth = function (request) {
   const encodedToken = request.requestHeaders.Authorization;
+  console.log(" encoded token in requires Auth" + encodedToken);
   const decodedToken = jwt_decode(
     encodedToken,
     process.env.REACT_APP_JWT_SECRET
