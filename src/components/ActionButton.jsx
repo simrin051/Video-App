@@ -4,29 +4,40 @@ import React, { Component } from 'react';
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useVideoContext } from "../contexts/videos";
-import { AddToNewPlaylist } from "../services/video-service";
-export const ActionButton = () => {
+import { AddToNewPlaylist, addVideoToPlayList, createNewPlaylist } from "../services/video-service";
+export const ActionButton = (props) => {
     let playListName = '';
+    const newPlayList = { title: "", description: "" }
     const [showPlaylist, setPlaylist] = React.useState(false);
     const [showNewPlaylistInput, setShowNewPlaylistInput] = React.useState(false);
     const showSideBar = () => {
         setPlaylist(!showPlaylist);
     }
+
     const AddToNewPlaylist = () => {
         setPlaylist(true);
         setShowNewPlaylistInput(true);
     }
-
-    const getInputValue = (event) => {
-        playListName = event.target.value;
-        if (playListName.length > 2) {
-
-        }
-    };
+    const createPlayList = document.getElementById('create-btn');
 
     const { state, videoDispatch } = useVideoContext();
-    let playlistDropdown = state.itemsInPlayList ?? [];
-    console.log(" items in playlist from service" + state.itemsInPlayList);
+
+
+    const findIdUsingPlaylistTitle = (title) => {
+    }
+
+    const createNewPlaylistBtnClick = () => {
+        let titleOfNewlyCreatedPlaylist = document.getElementById("playlistName").innerText;
+        // temp soln 
+        titleOfNewlyCreatedPlaylist = 'XX';
+        console.log(" titleOfNewlyCreatedPlaylist " + titleOfNewlyCreatedPlaylist);
+        createNewPlaylist(titleOfNewlyCreatedPlaylist, "", videoDispatch);
+        let idOfNewlyCreatedPlaylist = findIdUsingPlaylistTitle(titleOfNewlyCreatedPlaylist);
+        console.log(" props video " + JSON.stringify(props.video));
+        addVideoToPlayList(props.video, idOfNewlyCreatedPlaylist, videoDispatch)
+    }
+
+    let playlistDropdown = state.listPlayList ?? [];
     playlistDropdown = [...playlistDropdown, "Watch Later"]
 
     return (
@@ -45,8 +56,8 @@ export const ActionButton = () => {
                 }
                 {showPlaylist && <li className="playlist-item" key="AddToNewPlaylist" onClick={AddToNewPlaylist}>Add to new playlist<br /></li>}
                 {showPlaylist && showNewPlaylistInput && <div class="playlist-create" id="playlist-create">
-                    <input type="text" id="fname" name="fname" placeholder="playlist name" onChange={getInputValue} />
-                    <button>Create</button>
+                    <input type="text" id="playlistName" name="playlistName" placeholder="playlist name" />
+                    <button id="create-btn" onClick={createNewPlaylistBtnClick}>Create</button>
                 </div>}
             </div>
         </div >

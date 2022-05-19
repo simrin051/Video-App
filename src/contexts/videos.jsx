@@ -10,7 +10,7 @@ const VideoContextProvider = ({ children }) => {
         filterByCategory: '',
         categoryList: [],
         itemsInWatchLaterList: [],
-        itemsInPlayList: []
+        listPlayList: []
     };
 
     const [state, videoDispatch] = useReducer(
@@ -22,7 +22,7 @@ const VideoContextProvider = ({ children }) => {
         FetchVideoList(videoDispatch);
         FetchCategories(videoDispatch);
         getAllPlayList(videoDispatch);
-    }, []);
+    });
     return (
         <VideoContext.Provider value={{ state, videoDispatch }}>
             {children}

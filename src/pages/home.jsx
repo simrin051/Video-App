@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 export const Home = () => {
     const { state, videoDispatch } = useVideoContext();
     let videoList = state.videoList;
+    console.log("state items in playlist " + state.listPlayList);
+
 
     const getFilteredData = (videoList) => {
         return videoList.filter(video => video.categoryName == state.filterByCategory)

@@ -12,13 +12,14 @@ export const VideoItemCard = () => {
     const location = useLocation();
     const params = location.state;
     const { state, videoDispatch } = useVideoContext();
-    const playlistDropdown = state.itemsInPlayList;
+    console.log("state items in playlist " + state.listPlayList);
+    const playlistDropdown = state.listPlayList;
     console.log(" playlist dropdown " + JSON.stringify(playlistDropdown));
     return (<div className="video-player">
         <ReactPlayer class="video" controls height="20rem"
             url={params.video.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         />
-        <ActionButton></ActionButton>
+        <ActionButton video={params.video} ></ActionButton>
         <br />
         <hr />
         <div class="video-detail">

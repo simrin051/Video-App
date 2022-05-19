@@ -13,20 +13,6 @@ export const FetchVideoList = async (videoDispatch) => {
     }
 };
 
-export const FetchPlayList = async (videoDispatch) => {
-    try {
-        const res = await axios.get("/api/user/playlist");
-        if (res.status === 200)
-            videoDispatch({
-                type: "GET_PLAYLIST",
-                payload: res.data.playlists,
-            });
-    } catch (e) {
-        console.log(e.error);
-    }
-}
-
-
 export const FetchCategories = async (videoDispatch) => {
     try {
         const res = await axios.get("/api/categories");
@@ -97,29 +83,52 @@ export const removeFromWatchLaterList = async (video, videoDispatch) => {
 
 export const getAllPlayList = async (videoDispatch) => {
     try {
-        console.log("inside get all playlists service");
-        const res = await axios.get("/api/user/watchlater");
+        const res = await axios.get("/api/user/playlist");
         if (res.status === 200)
             videoDispatch({
                 type: "GET_PLAYLIST",
                 payload: res.playlists
             });
+
     } catch (e) {
         console.log(e.error);
     }
 
 }
 
-export const AddToNewPlaylist = (title, description) => {
+export const createNewPlaylist = (title, description, videoDispatch) => {
     try {
-        console.log("inside get all playlists service");
-        const res = axios.get("/api/user/playlists", {
-            playlist: { title: "foo", description: "bar bar bar" }
+        const res = axios.post("/api/user/playlists", {
+            playlist: { title: title, description: description }
         });
-        if (res.status === 200) { }
+        if (res.status === 200) {
+            videoDispatch({
+                type: "GET_PLAYLIST",
+                payload: res.playlists
+            });
+        }
 
     } catch (e) {
         console.log(e.error);
     }
+}
 
+export const addVideoToPlayList = (video, playlistId, videoDispatch) => {
+    try {
+        console.log("inside video service addVideoToPlayList");
+        console.log("playlist ID " + playlistId);
+        const res = axios.post(`/api/user/playlists/playlistId=${playlistId}`, {
+            video
+        });
+        if (res.status === 201) {
+            videoDispatch({
+                type: "GET_PLAYLIST",
+                payload: res.playlists
+            });
+            console.log("video added to playlist");
+        }
+
+    } catch (e) {
+        console.log(e.error);
+    }
 }
