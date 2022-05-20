@@ -22,7 +22,7 @@ const VideoContextProvider = ({ children }) => {
         FetchVideoList(videoDispatch);
         FetchCategories(videoDispatch);
         getAllPlayList(videoDispatch);
-    });
+    }, []);
     return (
         <VideoContext.Provider value={{ state, videoDispatch }}>
             {children}

@@ -24,15 +24,16 @@ export const ActionButton = (props) => {
 
 
     const findIdUsingPlaylistTitle = (title) => {
+        this.state.listPlayList.filter((playList) => { });
+    }
+
+    const playListNameChangeEvent = (e) => {
+        playListName = e.target.value;
     }
 
     const createNewPlaylistBtnClick = () => {
-        let titleOfNewlyCreatedPlaylist = document.getElementById("playlistName").innerText;
-        // temp soln 
-        titleOfNewlyCreatedPlaylist = 'XX';
-        console.log(" titleOfNewlyCreatedPlaylist " + titleOfNewlyCreatedPlaylist);
-        createNewPlaylist(titleOfNewlyCreatedPlaylist, "", videoDispatch);
-        let idOfNewlyCreatedPlaylist = findIdUsingPlaylistTitle(titleOfNewlyCreatedPlaylist);
+        createNewPlaylist(playListName, "", videoDispatch);
+        let idOfNewlyCreatedPlaylist = findIdUsingPlaylistTitle(playListName);
         console.log(" props video " + JSON.stringify(props.video));
         addVideoToPlayList(props.video, idOfNewlyCreatedPlaylist, videoDispatch)
     }
@@ -56,7 +57,7 @@ export const ActionButton = (props) => {
                 }
                 {showPlaylist && <li className="playlist-item" key="AddToNewPlaylist" onClick={AddToNewPlaylist}>Add to new playlist<br /></li>}
                 {showPlaylist && showNewPlaylistInput && <div class="playlist-create" id="playlist-create">
-                    <input type="text" id="playlistName" name="playlistName" placeholder="playlist name" />
+                    <input type="text" id="playlistName" name="playlistName" placeholder="playlist name" onChange={playListNameChangeEvent} />
                     <button id="create-btn" onClick={createNewPlaylistBtnClick}>Create</button>
                 </div>}
             </div>

@@ -114,9 +114,7 @@ export const addVideoToPlaylistHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
   if (user) {
     const playlistId = request.params.playlistId;
-    console.log(" Play list ID " + playlistId);
     const { video } = JSON.parse(request.requestBody);
-    console.log(" video found in add video to playlist handler " + JSON.stringify(video));
     const playlist = user.playlists.find((item) => item._id === playlistId);
     if (playlist.videos.some((item) => item.id === video.id)) {
       return new Response(

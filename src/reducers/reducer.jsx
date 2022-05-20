@@ -1,6 +1,4 @@
 export const videoStateReducer = (state, { type, payload }) => {
-    console.log("inside video state reducer");
-    console.log(type + " ** " + payload);
     switch (type) {
         case "GET_CATEGORIES": return { ...state, categoryList: payload };
         case "GET_VIDEOS": return { ...state, videoList: payload };
