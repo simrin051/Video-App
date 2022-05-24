@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { useVideoContext } from "../contexts/videos";
-import { AddToNewPlaylist, addVideoToPlayList, createNewPlaylist } from "../services/video-service";
+import { AddToNewPlaylist, addVideoToPlayList, CreateNewPlaylist } from "../services/video-service";
 export const ActionButton = (props) => {
     let playListName = '';
     const newPlayList = { title: "", description: "" }
@@ -23,19 +23,20 @@ export const ActionButton = (props) => {
     const { state, videoDispatch } = useVideoContext();
 
 
-    const findIdUsingPlaylistTitle = (title) => {
-        this.state.listPlayList.filter((playList) => { });
-    }
 
     const playListNameChangeEvent = (e) => {
         playListName = e.target.value;
     }
 
     const createNewPlaylistBtnClick = () => {
-        createNewPlaylist(playListName, "", videoDispatch);
-        let idOfNewlyCreatedPlaylist = findIdUsingPlaylistTitle(playListName);
-        console.log(" props video " + JSON.stringify(props.video));
-        addVideoToPlayList(props.video, idOfNewlyCreatedPlaylist, videoDispatch)
+        CreateNewPlaylist(playListName, "", props.video, videoDispatch).then(() => {
+            console.log(" State " + JSON.stringify(state));
+            console.log("items in playlist " + state.listPlayList);
+            //let idOfNewlyCreatedPlaylist = findIdUsingPlaylistTitle(playListName);
+            console.log(" props video " + JSON.stringify(props.video));
+
+
+        });
     }
 
     let playlistDropdown = state.listPlayList ?? [];
@@ -52,7 +53,7 @@ export const ActionButton = (props) => {
             <div className="playlist" id="playlist">
                 {showPlaylist &&
                     playlistDropdown.map((playlist) => (
-                        <li className="playlist-item" key={playlist}>{playlist}<br /></li>
+                        <li className="playlist-item" key={playlist}>{playlist.title}<br /></li>
                     ))
                 }
                 {showPlaylist && <li className="playlist-item" key="AddToNewPlaylist" onClick={AddToNewPlaylist}>Add to new playlist<br /></li>}

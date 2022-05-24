@@ -50,9 +50,10 @@ export const addNewPlaylistHandler = function (schema, request) {
   if (user) {
     const { playlist } = JSON.parse(request.requestBody);
     user.playlists.push({ ...playlist, videos: [], _id: uuid() });
-    console.log(" Response is 201 ");
+    console.log("added new playlist" + JSON.stringify(user.playlists));
     return new Response(201, {}, { playlists: user.playlists });
   }
+  console.log("returnining 404");
   return new Response(
     404,
     {},
@@ -110,13 +111,15 @@ export const getVideosFromPlaylistHandler = function (schema, request) {
  * */
 
 export const addVideoToPlaylistHandler = function (schema, request) {
-  console.log("inside add video to playlist handler ");
   const user = requiresAuth.call(this, request);
   if (user) {
     const playlistId = request.params.playlistId;
     const { video } = JSON.parse(request.requestBody);
     const playlist = user.playlists.find((item) => item._id === playlistId);
+    console.log("found newly created playlist " + JSON.stringify(playlist));
+    console.log("playlist ID " + playlistId);
     if (playlist.videos.some((item) => item.id === video.id)) {
+      console.log("response as 409");
       return new Response(
         409,
         {},
@@ -125,8 +128,10 @@ export const addVideoToPlaylistHandler = function (schema, request) {
         }
       );
     }
+    console.log(" playlist videos " + JSON.stringify(playlist.videos));
     playlist.videos.push(video);
-    return new Response(201, {}, { playlist });
+    console.log("Response as 201");
+    return new Response(201, {}, { playlists: user.playlists });
   }
   return new Response(
     404,

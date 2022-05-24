@@ -1,5 +1,16 @@
 import axios from "axios";
 import { ErrorMessage } from "../components/ErrorMessage";
+import { useUserContext } from "../contexts/user";
+import { useVideoContext } from "../contexts/videos";
+
+
+//const { state: { token } } = useUserContext();
+//var bearer = 'Bearer ' + token;
+//const headers = {
+//  'Authorization': bearer,
+//'Content-Type': 'application/json'
+//}
+
 export const FetchVideoList = async (videoDispatch) => {
     try {
         const res = await axios.get("/api/videos");
@@ -96,36 +107,43 @@ export const getAllPlayList = async (videoDispatch) => {
 
 }
 
-export const createNewPlaylist = (title, description, videoDispatch) => {
+export const CreateNewPlaylist = async (title, description, video, videoDispatch) => {
     try {
-        const res = axios.post("/api/user/playlists", {
+        let res = await axios.post("/api/user/playlists", {
             playlist: { title: title, description: description }
         });
-        if (res.status === 200) {
+
+        if (res.status == 201) {
             videoDispatch({
-                type: "GET_PLAYLIST",
-                payload: res.playlists
+                type: "ADD_TO_PLAYLIST",
+                payload: res.data.playlists
             });
+            const playlistId = res.data.playlists.slice(-1)[0]._id;
+            if (video) {
+                addVideoToPlayList(playlistId, video, videoDispatch);
+            }
+
         }
 
+
+
     } catch (e) {
-        console.log(e.error);
+
+        console.log("Error inside vdeo service " + e);
     }
 }
 
-export const addVideoToPlayList = (video, playlistId, videoDispatch) => {
+export const addVideoToPlayList = async (playlistId, video, videoDispatch) => {
     try {
-        console.log("inside video service addVideoToPlayList");
-        console.log("playlist ID " + playlistId);
-        const res = axios.post(`/api/user/playlists/playlistId=${playlistId}`, {
+        const res = await axios.post(`/api/user/playlists/${playlistId}`, {
             video
         });
+
         if (res.status === 201) {
             videoDispatch({
-                type: "GET_PLAYLIST",
-                payload: res.playlists
+                type: "ADD_VIDEO_TO_PLAYLIST",
+                payload: video
             });
-            console.log("video added to playlist");
         }
 
     } catch (e) {

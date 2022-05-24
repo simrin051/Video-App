@@ -7,10 +7,12 @@ import { useNavigate } from 'react-router-dom';
 
 const UserContext = createContext();
 export const UserContextProvider = ({ children }) => {
+    console.log("inside user context provider");
+    axios.defaults.headers.common['Authorization'] = localStorage.getItem("session") ? JSON.parse(localStorage.getItem("session")).token : '';
     const navigation = useNavigate();
     const initialState = {
-        token: '',
-        userName: ''
+        token: JSON.parse(localStorage.getItem("session")).token,
+        userName: JSON.parse(localStorage.getItem("session")).username
     };
 
     const [state, userDispatch] = useReducer(authenticationReducer, initialState);
@@ -30,8 +32,7 @@ export const UserContextProvider = ({ children }) => {
                     type: 'LOGIN_USER',
                     payload: { token: response.data.encodedToken, userName: response.data.createdUser.email }
                 });
-                console.log(" respose data encoded token " + response.data.encodedToken);
-                axios.defaults.headers.common['Authorization'] = response.data.encodedToken;
+                console.log(" respose data encoded token " + localStorage.getItem("session").token);
                 navigation(fromPathNavigate);
             }
         } catch (err) {
