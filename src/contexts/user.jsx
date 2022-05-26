@@ -10,11 +10,15 @@ export const UserContextProvider = ({ children }) => {
     console.log("inside user context provider");
     axios.defaults.headers.common['Authorization'] = localStorage.getItem("session") ? JSON.parse(localStorage.getItem("session")).token : '';
     const navigation = useNavigate();
-    const initialState = {
+    /**const initialState = {
         token: JSON.parse(localStorage.getItem("session")).token,
         userName: JSON.parse(localStorage.getItem("session")).username
-    };
+    }; **/
 
+    const initialState = {
+        token: '',
+        userName: ''
+    }
     const [state, userDispatch] = useReducer(authenticationReducer, initialState);
 
     const signUpUser = async (data, fromPathNavigate) => {

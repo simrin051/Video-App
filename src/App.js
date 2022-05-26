@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 import { VideoListCard } from "./components/VideoItemCard/VideoListCard";
 import { WishLaterList } from "./pages/watchlaterlist";
-
+import { PlayList } from "./pages/playlist";
 
 function App() {
   return (
@@ -26,6 +26,9 @@ function App() {
         <Route path="/videoList" element={<VideoListCard />} />
         <Route path="/mock" element={<Mockman endPointsList={["/api/auth/signup", "/api/videos", "/api/user/playlist"]} />} />
         <Route path="/watchlater" element={<WishLaterList />} />
+        <Route path="/playLists" element={<PlayList />} />
+        <Route path="/playlistvideos" element={<VideoListCard />} />
+
       </Routes>
     </div>
   );
