@@ -3,6 +3,7 @@ import { SignIn } from './authentication/SignIn';
 import { SignUp } from './authentication/SignUp';
 import { Home } from './pages/home';
 import { VideoItemCard } from './components/VideoItemCard/VideoItemCard';
+
 import Mockman from "mockman-js";
 
 import {
@@ -13,11 +14,12 @@ import {
 } from "react-router-dom";
 import { VideoListCard } from "./components/VideoItemCard/VideoListCard";
 import { WishLaterList } from "./pages/watchlaterlist";
-import { PlayList } from "./pages/playlist";
+import { Toast } from './components/toast/toast';
 
 function App() {
   return (
     <div className="App">
+      <Toast />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/video" element={<VideoItemCard />} />
@@ -26,8 +28,6 @@ function App() {
         <Route path="/videoList" element={<VideoListCard />} />
         <Route path="/mock" element={<Mockman endPointsList={["/api/auth/signup", "/api/videos", "/api/user/playlist"]} />} />
         <Route path="/watchlater" element={<WishLaterList />} />
-        <Route path="/playLists" element={<PlayList />} />
-        <Route path="/playlistvideos" element={<VideoListCard />} />
 
       </Routes>
     </div>
