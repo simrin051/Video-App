@@ -1,18 +1,18 @@
 import axios from "axios";
-import { useToast } from "../contexts/toast";
 
 
 export const getAllPlayList = async (videoDispatch) => {
     try {
         const res = await axios.get("/api/user/playlist");
-        if (res.status === 200)
+        console.log(" respone data " + res.data.playlists);
+        if (res.status === 200) {
             videoDispatch({
                 type: "GET_PLAYLIST",
-                payload: res.playlists
+                payload: res.data.playlists
             });
-
+        }
     } catch (e) {
-        console.log(e.error);
+        console.log(e);
     }
 }
 
@@ -21,7 +21,7 @@ export const CreateNewPlaylist = async (title, description, video, videoDispatch
         let res = await axios.post("/api/user/playlists", {
             playlist: { title: title, description: description }
         });
-
+        console.log("res data playlists " + JSON.stringify(res.data.playlists));
         if (res.status == 201) {
             showToast({ title: "Playlist is created", type: "success" });
             videoDispatch({
@@ -31,7 +31,7 @@ export const CreateNewPlaylist = async (title, description, video, videoDispatch
             const playlistId = res.data.playlists.slice(-1)[0]._id;
             console.log("video " + video + " playlist id " + playlistId);
             if (video) {
-                addVideoToPlayList(playlistId, video, videoDispatch, showToast);
+                addVideoToPlayList({ playlistId, video, videoDispatch, showToast });
             }
         }
     } catch (e) {
@@ -45,11 +45,12 @@ export const addVideoToPlayList = async (playlistId, video, videoDispatch, showT
         const res = await axios.post(`/api/user/playlists/${playlistId}`, {
             video
         });
+        console.log(" Respnse " + JSON.stringify(res));
         if (res.status === 201) {
             showToast({ title: "Video is added to playlist", type: "success" });
             videoDispatch({
                 type: "ADD_VIDEO_TO_PLAYLIST",
-                payload: video
+                payload: res.data.playlist
             });
         }
     } catch (e) {

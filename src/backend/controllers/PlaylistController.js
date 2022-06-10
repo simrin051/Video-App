@@ -131,7 +131,7 @@ export const addVideoToPlaylistHandler = function (schema, request) {
     console.log(" playlist videos " + JSON.stringify(playlist.videos));
     playlist.videos.push(video);
     console.log("Response as 201");
-    return new Response(201, {}, { playlists: user.playlists });
+    return new Response(201, {}, { playlist });
   }
   return new Response(
     404,

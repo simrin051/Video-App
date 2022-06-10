@@ -6,6 +6,7 @@ import { useVideoContext } from '../../contexts/videos';
 import { addToWatchLaterList } from '../../services/video-service';
 
 export const VideoListCard = ({ video }) => {
+    console.log("Video ** " + JSON.stringify(video));
     const [isOpen, setIsOpen] = useState(false);
     const { state, videoDispatch } = useVideoContext();
     const navigate = useNavigate();

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useToast } from "../contexts/toast";
 import { useVideoContext } from '../contexts/videos';
 import { CreateNewPlaylist } from '../services/playlist-service';
+import { addToWatchLaterList } from '../services/video-service';
 
 export const ActionButton = ({ video }) => {
     console.log(" video json " + JSON.stringify(video));
@@ -37,7 +38,6 @@ export const ActionButton = ({ video }) => {
         <div>
             <div class="action-btns">
                 <i class="nav-icon fa fa-thumbs-up"></i>
-                <i class="nav-icon fa fa-thumbs-down"><span>DISLIKE</span></i>
                 <i className="nav-icon  fa fa-square-plus playlist-icon" onClick={showSideBar}></i>
                 <i class="nav-icon fa fa-share-nodes"></i>
             </div>
@@ -45,6 +45,7 @@ export const ActionButton = ({ video }) => {
                 {showPlaylist
                 }
                 {showPlaylist && <li className="playlist-item" key="AddToNewPlaylist" onClick={AddToNewPlaylist}>Add to new playlist<br /></li>}
+                <li className="playlist-item" key="AddToNewPlaylist" onClick={addToWatchLaterList()}>Add to new playlist<br /></li>
                 {showPlaylist && showNewPlaylistInput && <div class="playlist-create" id="playlist-create">
                     <input type="text" id="playListName" name="playlistName" value={newPlayList.title} placeholder="playlist name" onChange={(e) =>
                         setNewPlayList({ ...newPlayList, title: e.target.value })} />

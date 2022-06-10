@@ -87,7 +87,7 @@
   display: grid;
   align-items: stretch;
   justify-content: space-between;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   position: absolute;
   background-color: #F5FFFA;
   width: 40rem;
@@ -217,7 +217,7 @@ hr {
   margin-left: 5px;
 }
 
-.watch-later-list h2 {
+.videos-list h2 {
   color: var(--primary-color);
   text-align: center;
 }
@@ -252,4 +252,11 @@ hr {
 .playlist-create button {
   margin-top: 5px;
   margin-left: 5px;
+}
+
+.toastBody {
+  font-family: "Atlas Grotesk Web", Arial, Helvetica, sans-serif;
+  color: #10171D;
+  /* #10171D */
+  font-size: 0.875rem !important;
 }

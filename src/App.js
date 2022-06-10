@@ -15,8 +15,14 @@ import {
 import { VideoListCard } from "./components/VideoItemCard/VideoListCard";
 import { WishLaterList } from "./pages/watchlaterlist";
 import { Toast } from './components/toast/toast';
+import { PlayList } from './pages/PlayList/playlist';
+import { PlaylistModal } from './components/modal/PlaylistModal';
+import { usePlaylistModal } from "./contexts/playlistmodal";
 
 function App() {
+
+  const { displayModal } = usePlaylistModal();
+
   return (
     <div className="App">
       <Toast />
@@ -26,10 +32,14 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/videoList" element={<VideoListCard />} />
+        <Route path="/playlist" element={<PlayList />} />
         <Route path="/mock" element={<Mockman endPointsList={["/api/auth/signup", "/api/videos", "/api/user/playlist"]} />} />
         <Route path="/watchlater" element={<WishLaterList />} />
 
       </Routes>
+
+
+
     </div>
   );
 }

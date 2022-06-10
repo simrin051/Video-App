@@ -1,6 +1,7 @@
 import ReactPlayer from 'react-player';
-import { ActionButton } from './../ActionButton';
 import { useLocation } from 'react-router-dom';
+import { WatchLaterButton } from './../WatchLaterButton';
+import { NewPlaylistButton } from './../NewPlaylistButton';
 
 export const VideoItemCard = () => {
 
@@ -11,7 +12,11 @@ export const VideoItemCard = () => {
         <ReactPlayer class="video" controls height="20rem"
             url={url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         />
-        <ActionButton video={params.video}></ActionButton>
+        <div class="action-btns">
+            <i class="nav-icon fa fa-thumbs-up"></i>
+            <WatchLaterButton video={params.video}></WatchLaterButton>
+            <NewPlaylistButton video={params.video}></NewPlaylistButton>
+        </div>
         <br />
         <hr />
         <div class="video-detail">

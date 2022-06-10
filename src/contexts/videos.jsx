@@ -1,7 +1,8 @@
 
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { videoStateReducer } from "../reducers/reducer";
-import { FetchCategories, FetchVideoList, getAllPlayList } from './../services/video-service';
+import { FetchCategories, FetchVideoList } from './../services/video-service';
+import { } from './../services/playlist-service';
 
 const VideoContext = createContext();
 const VideoContextProvider = ({ children }) => {
@@ -18,10 +19,13 @@ const VideoContextProvider = ({ children }) => {
         initialVideoState
     );
 
+    console.log(" playlist in video context " + JSON.stringify(state.listPlayList));
+    console.log(" playlist in video context length " + (state.listPlayList.length));
+
+
     useEffect(() => {
         FetchVideoList(videoDispatch);
         FetchCategories(videoDispatch);
-        getAllPlayList(videoDispatch);
     }, []);
     return (
         <VideoContext.Provider value={{ state, videoDispatch }}>
