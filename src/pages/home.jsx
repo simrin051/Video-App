@@ -4,7 +4,7 @@ import { useVideoContext } from "../contexts/videos";
 import { Link } from 'react-router-dom';
 
 export const Home = () => {
-    const { state, videoDispatch } = useVideoContext();
+    const { state, videoStateDispatch } = useVideoContext();
     let videoList = state.videoList;
 
     const getFilteredData = (videoList) => {
@@ -32,7 +32,7 @@ export const Home = () => {
                         {skills.map((skill) => {
                             return (
                                 <span class="filter" value={skill} onClick={() => {
-                                    videoDispatch({
+                                    videoStateDispatch({
                                         type: 'FILTER_BY_CATEGORY',
                                         payload: { skill }
                                     })

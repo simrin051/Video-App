@@ -81,6 +81,7 @@
   margin-top: 2rem;
   margin-left: 20rem;
   margin-right: 10rem;
+  position: relative;
 }
 
 .action-btns {
@@ -237,6 +238,16 @@ hr {
   background-color: #FBFBF9;
   padding: 5px;
   border-bottom: 1px solid black;
+}
+
+.playlist-create {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+  width: 5rem;
+  height: 5rem;
 }
 
 .playlist-create input {

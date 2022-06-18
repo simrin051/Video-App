@@ -1,10 +1,16 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { getAllPlayList } from './../services/playlist-service';
+import { useVideoContext } from "./videos";
 
 const PlaylistModalContext = createContext();
 
 const PlaylistModalProvider = ({ children }) => {
     const [displayModal, setDisplayModal] = useState(false);
     const [video, setVideo] = useState({});
+    //const { state, videoStateDispatch } = useVideoContext();
+    useEffect(() => {
+        //  getAllPlayList(videoStateDispatch);
+    }, []);
 
     return (
         <PlaylistModalContext.Provider
@@ -19,7 +25,7 @@ const usePlaylistModal = () => {
     const context = useContext(PlaylistModalContext);
     if (!context) {
         throw new Error(
-            `use usePlaylistModal must be used inside a context provider`
+            `use use must be used inside a context provider`
         );
     }
     return context;

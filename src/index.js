@@ -15,15 +15,15 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <UserContextProvider>
-        <VideoContextProvider>
-          <PlaylistModalProvider>
+      <PlaylistModalProvider>
+        <UserContextProvider>
+          <VideoContextProvider>
             <ToastProvider>
               <App />
             </ToastProvider >
-          </PlaylistModalProvider>
-        </VideoContextProvider>
-      </UserContextProvider>
+          </VideoContextProvider>
+        </UserContextProvider>
+      </PlaylistModalProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

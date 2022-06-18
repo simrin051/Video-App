@@ -14,21 +14,17 @@ const VideoContextProvider = ({ children }) => {
         listPlayList: []
     };
 
-    const [state, videoDispatch] = useReducer(
+    const [state, videoStateDispatch] = useReducer(
         videoStateReducer,
         initialVideoState
     );
 
-    console.log(" playlist in video context " + JSON.stringify(state.listPlayList));
-    console.log(" playlist in video context length " + (state.listPlayList.length));
-
-
     useEffect(() => {
-        FetchVideoList(videoDispatch);
-        FetchCategories(videoDispatch);
+        FetchVideoList(videoStateDispatch);
+        FetchCategories(videoStateDispatch);
     }, []);
     return (
-        <VideoContext.Provider value={{ state, videoDispatch }}>
+        <VideoContext.Provider value={{ state, videoStateDispatch }}>
             {children}
         </VideoContext.Provider>
     );
