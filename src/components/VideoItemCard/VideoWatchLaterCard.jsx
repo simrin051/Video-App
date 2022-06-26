@@ -1,8 +1,10 @@
+import { useToast } from "../../contexts/toast";
 import { useVideoContext } from "../../contexts/videos";
 import { removeFromWatchLaterList } from "../../services/video-service";
 import "./ItemCard.css";
 export const VideoWatchLaterCard = ({ video }) => {
-    const { state, videoDispatch } = useVideoContext();
+    const { state, videoStateDispatch } = useVideoContext();
+    const { showToast } = useToast();
     return (
         <div class="card-horizontal">
             <div class="card-container-horizontal">
@@ -14,7 +16,7 @@ export const VideoWatchLaterCard = ({ video }) => {
                     <span class="content-title">{video.title}</span>
                     <div class="action-btn-container">
                         <span class="sub-title">{video.categoryName}</span>
-                        <i onClick={() => removeFromWatchLaterList(video, videoDispatch)} class="video-delete-icon fa-solid fa-trash"></i>
+                        <i onClick={() => removeFromWatchLaterList({video, videoStateDispatch,showToast})} class="video-delete-icon fa-solid fa-trash"></i>
                     </div>
                 </div>
             </div></div >)
