@@ -1,5 +1,5 @@
 export const videoStateReducer = (state, { type, payload }) => {
-    console.log("nside reducer " + type);
+    console.log("nside reducer " + type+ "  payload "+JSON.stringify(payload));
     switch (type) {
         case "GET_CATEGORIES": return { ...state, categoryList: payload };
         case "GET_VIDEOS": return { ...state, videoList: payload };
@@ -7,8 +7,8 @@ export const videoStateReducer = (state, { type, payload }) => {
         case "GET_WATCHLATER_LIST": return { ...state, itemsInWatchLaterList: payload };
         case 'ADD_TO_WATCHLATER_LIST': return { ...state, itemsInWatchLaterList: payload };
         case 'REMOVE_FROM_WATCHLATER_LIST': return { ...state, itemsInWatchLaterList: payload };
-        case 'ADD_TO_PLAYLIST': return { ...state, listPlayList: state.listPlayList.concat(payload) };
-        case 'ADD_VIDEO_TO_PLAYLIST': return {
+        case 'ADD_TO_PLAYLIST': return { ...state, listPlayList: payload };
+        case 'HANDLE_PLAYLIST': return {
             ...state, listPlayList: state.listPlayList.map((playlist) =>
                 playlist._id === payload._id ? payload : playlist
             )

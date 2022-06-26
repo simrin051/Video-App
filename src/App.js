@@ -17,11 +17,23 @@ import { WishLaterList } from "./pages/watchlaterlist";
 import { Toast } from './components/toast/toast';
 import { PlayList } from './pages/PlayList/playlist';
 import { PlaylistModal } from './components/modal/PlaylistModal';
+import { getAllPlayList } from "./services/playlist-service";
 import { usePlaylistModal } from "./contexts/playlistmodal";
+import { useEffect } from "react";
+import { useVideoContext } from './contexts/videos';
+import { PlayListVideos } from "./pages/playlistvideos";
+
 
 function App() {
 
   const { displayModal } = usePlaylistModal();
+  const {
+    videoStateDispatch,
+} = useVideoContext();
+
+  useEffect(() => {
+    getAllPlayList({videoStateDispatch});
+  });
 
   return (
     <div className="App">
@@ -35,7 +47,7 @@ function App() {
         <Route path="/playlist" element={<PlayList />} />
         <Route path="/mock" element={<Mockman endPointsList={["/api/auth/signup", "/api/videos", "/api/user/playlist"]} />} />
         <Route path="/watchlater" element={<WishLaterList />} />
-
+        <Route path="/playlistvideos" element={<PlayListVideos />} />
       </Routes>
 
 

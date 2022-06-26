@@ -26,7 +26,6 @@ export const getAllPlaylistsHandler = function (schema, request) {
         }
       );
     }
-    console.log("inside backend controller" + user.playlists.length);
     return new Response(200, {}, { playlists: user.playlists });
   } catch (error) {
     return new Response(
@@ -150,6 +149,7 @@ export const removeVideoFromPlaylistHandler = function (schema, request) {
       (item) => item._id !== videoId
     );
     playlist.videos = filteredVideos;
+    console.log("removed video from the playlist");
     return new Response(200, {}, { playlist });
   }
   return new Response(

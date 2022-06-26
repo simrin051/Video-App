@@ -1,6 +1,18 @@
-.playListCard {
-    background-color: #62C2CC;
-    color: white;
-    height: 10rem;
-    margin-right: 5%;
-}
+.videoplayicon {
+    z-index: 1000;
+    width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 4rem; 
+  color: var(--primary-color);
+  }
+ 
+  .image-badge-container {
+    position: relative;
+  }
+  .image-badge-container:hover .videoplayicon{
+    visibility: visible;
+   
+  }

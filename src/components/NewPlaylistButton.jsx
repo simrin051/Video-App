@@ -15,10 +15,11 @@ export const NewPlaylistButton = ({ video }) => {
         console.log("inside handle playlistmodal");
         setVideo(video);
         setOpenModal(true);
+        setDisplayModal(true);
     }
     return (
         <div className="playlistForm">
-            <i style={isSaved ? { color: "grey" } : { color: "var(--primary-color)" }} class="nav-icon fas fa-save" aria-hidden="true" onClick={() => handlePlaylistModal()}></i>
+            <i  class="nav-icon fas fa-save" aria-hidden="true" onClick={() => handlePlaylistModal()}></i>
             {openModal && <PlaylistModal closeModal={setOpenModal} openModal={openModal} />}
         </div >
     )

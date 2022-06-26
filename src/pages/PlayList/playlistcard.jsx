@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
+import './playlist.css';
 
-export const PlayListCard = (playlist) => {
+export const PlayListCard = ({playlistDetail}) => {
     return (
-        <div class="playListCard">
             <Link to={{
-                pathname: '/playlistvideos',
-                playlist: playlist
-            }}>
-                <div class="playListCard">
+                  pathname: '/playlistvideos'
+            }}  state={{ playlist: playlistDetail}}>
+                <div class="playListCardTitle">
+                    {playlistDetail.title}
                 </div>
             </Link>
-        </div>
     )
 } 

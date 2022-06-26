@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const UserContext = createContext();
 export const UserContextProvider = ({ children }) => {
-    console.log("inside user context provider");
+    console.log("inside user context provider"+ axios.defaults.headers.common['Authorization'] );
     axios.defaults.headers.common['Authorization'] = localStorage.getItem("session") ? JSON.parse(localStorage.getItem("session")).token : '';
     const navigation = useNavigate();
     /**const initialState = {

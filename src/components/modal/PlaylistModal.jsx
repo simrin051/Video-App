@@ -4,18 +4,16 @@ import { PlayList } from './../../pages/PlayList/playlist';
 import { useVideoContext } from "../../contexts/videos";
 import { usePlaylistModal } from "../../contexts/playlistmodal";
 import { useToast } from "../../contexts/toast";
-import { CreateNewPlaylist } from "../../services/playlist-service";
-
+import { CreateNewPlaylist,addVideoToPlayList,removeVideoFromPlayList } from "../../services/playlist-service";
+import { VideoInPlaylist } from "../../utils/utils";
 
 export const PlaylistModal = () => {
     const {
         state: { listPlayList },
         videoStateDispatch,
     } = useVideoContext();
-    console.log("inside playlist modal");
-    console.log(" list play list " + JSON.stringify(listPlayList));
-    const { setDisplayModal, video, setVideo } = usePlaylistModal();
-
+    const { setDisplayModal, displayModal,video, setVideo } = usePlaylistModal();
+    var isVideoInPlaylist = false;
     const [playlist, setPlaylist] = useState({ title: "", description: "" });
     const [showCreatePlaylistForm, setShowCreatePlaylistForm] = useState(video ? false : true);
     const { showToast } = useToast();
@@ -38,23 +36,41 @@ export const PlaylistModal = () => {
         }
     };
 
+    const playlistCheckboxChanged=( playlistId,title,isVideoInPlaylist)=>{
+        console.log("is video in playlist "+isVideoInPlaylist);
+        if (!isVideoInPlaylist) {
+            // add video to playlist
+            console.log("add video to playlist");
+            addVideoToPlayList({  playlistId, video, videoStateDispatch, showToast });
+        } else {
+            // remove video from playlist
+            console.log("remove video from playlist ");
+            removeVideoFromPlayList({ playlistId, video, videoStateDispatch, showToast });
+        }
+    }
     // add to new  playlist form
     return (
-        <div>{video && !showCreatePlaylistForm && (<div className="flex-col modal-section-overlay"><h3 className=" playlists-list playlist-title">PlayList</h3>
+        <div  class="container">{ displayModal && (<div className="flex-col modal-section-overlay"><div className="playlists-dialog-list"><h3 className="  playlist-title">PlayList</h3>
 
-            {listPlayList.map((playlist) => {
-                const [_id, title] = playlist;
+            <div className="playlistmodal">{listPlayList.map((playlist) => {
+                const {_id, title} = playlist;
+                isVideoInPlaylist = VideoInPlaylist(
+                    video._id,
+                    playlist
+                );
                 return (
-                    <div>
+                        <div>
                         <input
-                            type={"checkbox"}
+                            defaultChecked = {isVideoInPlaylist}
+                            type="checkbox"
+                            onClick={()=>{playlistCheckboxChanged(_id,title,isVideoInPlaylist)}}
                         />
-                        <span className="inline-m">{title}</span>
-                    </div>
+                        <span className="inline-m">{title}</span></div>
+                  
                 )
-            })}
+            })}  </div>
             <button id="playlist-btn" onClick={() => setShowCreatePlaylistForm(true)}>Add to new PlayList</button>
-        </div >)}
+        </div ></div>)}
 
             {
                 showCreatePlaylistForm && (<div className="flex-col modal-section-overlay"><form className="playlist-form" onSubmit={handleSubmit}>

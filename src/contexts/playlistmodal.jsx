@@ -7,10 +7,6 @@ const PlaylistModalContext = createContext();
 const PlaylistModalProvider = ({ children }) => {
     const [displayModal, setDisplayModal] = useState(false);
     const [video, setVideo] = useState({});
-    //const { state, videoStateDispatch } = useVideoContext();
-    useEffect(() => {
-        //  getAllPlayList(videoStateDispatch);
-    }, []);
 
     return (
         <PlaylistModalContext.Provider

@@ -197,21 +197,19 @@ hr {
 }
 
 .video-delete-icon {
-  float: right;
   top: 0px;
-}
-
-.video-delete-icon {
   display: inline-block;
-  margin-left: 15rem;
+  position:relative;
+  margin-left: 14rem;
 }
 
 .card-horizontal .card-container-horizontal .image-badge-container img {
-  height: 8rem;
+  height: 10rem;
+  width: 10rem;
 }
 
 .card-horizontal {
-  height: 8rem;
+  height: 10rem;
   width: 30rem;
   border: 5px solid var(--primary-color);
   margin-top: 5px;

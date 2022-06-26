@@ -22,7 +22,7 @@ export const Home = () => {
             <div class="nav-container">
                 <ul class="sidebar sidebar-nav-links">
                     <li><a class="sidebar-nav-link navbar-heading" href="#alerts"><i class="nav-icon fa fa-house"></i>Home</a></li>
-                    <li><Link class="sidebar-nav-link" to="/playlists"><i class="nav-icon fa-brands fa-playstation"></i> Playlists</Link></li>
+                    <li><Link class="sidebar-nav-link" to="/playlist"><i class="nav-icon fa-brands fa-playstation"></i> Playlists</Link></li>
                     <li><Link class="sidebar-nav-link" to="/liked"><i class="nav-icon fa-solid fa-heart"></i>Liked</Link></li>
                     <li><Link class="sidebar-nav-link" to="/watchlater"><i class="nav-icon fa-solid fa-clock"></i>Watch Later</Link></li>
                     <li><Link class="sidebar-nav-link" to="/history"><i class="nav-icon fa-solid fa-clock-rotate-left"></i>History</Link></li>

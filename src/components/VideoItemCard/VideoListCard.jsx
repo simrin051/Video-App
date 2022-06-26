@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useVideoContext } from '../../contexts/videos';
 import { addToWatchLaterList } from '../../services/video-service';
+import { useToast } from '../../contexts/toast';
 
 export const VideoListCard = ({ video }) => {
-    console.log("Video ** " + JSON.stringify(video));
+    const { showToast } = useToast();
     const [isOpen, setIsOpen] = useState(false);
-    const { state, videoDispatch } = useVideoContext();
+    const { state, videoStateDispatch } = useVideoContext();
+    const itemsInWatchLaterList = state.itemsInWatchLaterList;
     const navigate = useNavigate();
 
     const toVideoDetailPage = (video) => {
@@ -25,7 +27,7 @@ export const VideoListCard = ({ video }) => {
             <div class="action-btn">
                 <i class="fa fa-ellipsis-vertical" onClick={() => setIsOpen(!isOpen)}></i>
                 <div class="menu-icon">
-                    {isOpen && <div class="menu-nav-icon"><i class="fa-solid fa-clock" onClick={() => addToWatchLaterList(video, videoDispatch, state.itemsInWatchLaterList)}></i>{" "} Watch Later</div>}
+                    {isOpen && <div class="menu-nav-icon"><i class="fa-solid fa-clock" onClick={() => addToWatchLaterList({video, videoStateDispatch,showToast})}></i>{" "} Watch Later</div>}
                     {isOpen && <div class="menu-nav-icon"><i class="fa-solid fa-heart"></i>{" "}Liked Videos</div>}
                 </div>
             </div>
