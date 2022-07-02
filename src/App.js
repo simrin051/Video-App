@@ -22,6 +22,7 @@ import { usePlaylistModal } from "./contexts/playlistmodal";
 import { useEffect } from "react";
 import { useVideoContext } from './contexts/videos';
 import { PlayListVideos } from "./pages/playlistvideos";
+import { History } from "./pages/history";
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
         <Route path="/mock" element={<Mockman endPointsList={["/api/auth/signup", "/api/videos", "/api/user/playlist"]} />} />
         <Route path="/watchlater" element={<WishLaterList />} />
         <Route path="/playlistvideos" element={<PlayListVideos />} />
+        <Route path="/history" element={<History />} />
       </Routes>
 
 

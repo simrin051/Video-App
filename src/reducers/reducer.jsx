@@ -14,7 +14,9 @@ export const videoStateReducer = (state, { type, payload }) => {
             )
         }
         case 'GET_PLAYLIST': return { ...state, listPlayList: [...state.listPlayList] };
-
+        case 'ADD_TO_HISTORY': return { ...state, watchHistory: payload };
+        case 'REMOVE_FROM_HISTORY': return { ...state, watchHistory: payload };
+        case 'CLEAR_HISTORY': return { ...state, watchHistory: [] };
         default: return { ...state };
     }
 }

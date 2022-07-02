@@ -4,3 +4,9 @@
     text-align: center;
     padding: 10%;
 }
+
+.clear-history-btn {
+    float: right;
+    top: 0px;
+    margin-right: 5rem;
+}

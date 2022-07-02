@@ -72,4 +72,29 @@ export const removeVideoFromPlayList = async ({ playlistId, video, videoStateDis
     }
 }
 
+export const addToHistoryPlaylist = async ({ video, videoStateDispatch, showToast }) => {
+    try {
+        console.log("inside add to history playlist  ");
+        console.log(" video id "+JSON.stringify(video));
+        const res = await axios.post(`/api/user/history`,{video});
+        console.log(res.data.history+" status "+res.status);
+        if (res.status === 201) {
+            showToast({ title: "Add video to history", type: "success" });
+            videoStateDispatch({
+                type: "ADD_TO_HISTORY",
+                payload: res.data.history
+            });
+        }
+    } catch (e) {
+        console.log("error "+JSON.stringify(e));
+        console.log(e.error);
+    }
+}
 
+export const clearHistoryPlaylist =  async ({ videoStateDispatch, showToast }) => {
+    videoStateDispatch({
+        type: "CLEAR_HISTORY",
+        payload: []
+    });  
+    showToast({ title: "History cleared", type: "success" });
+}
