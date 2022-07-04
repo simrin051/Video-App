@@ -5,6 +5,7 @@ import { NewPlaylistButton } from './../NewPlaylistButton';
 import { addToHistoryPlaylist } from '../../services/playlist-service';
 import { useVideoContext } from '../../contexts/videos';
 import { useToast } from '../../contexts/toast';
+import { LikeButton } from '../LikeButton';
 
 export const VideoItemCard = () => {
 
@@ -20,7 +21,7 @@ export const VideoItemCard = () => {
             onStart={()=>{addToHistoryPlaylist({video: params.video, videoStateDispatch, showToast })}}
         />
         <div class="action-btns">
-            <i class="nav-icon fa fa-thumbs-up"></i>
+            <LikeButton video={params.video}></LikeButton>
             <WatchLaterButton video={params.video}></WatchLaterButton>
             <NewPlaylistButton video={params.video}></NewPlaylistButton>
         </div>

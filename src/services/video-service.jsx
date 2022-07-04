@@ -84,3 +84,33 @@ export const removeFromWatchLaterList = async ({video, videoStateDispatch,showTo
         console.log(e.error);
     }
 }
+
+
+export const addToLikedVideos = async ({video, videoStateDispatch,showToast}) => {
+    try {
+        const res = await axios.post(`/api/user/likes`,{video});
+        if (res.status === 201) {
+            console.log("added video to liked videos "+JSON.stringify(res.data.likes));
+            videoStateDispatch({
+                type: "HANDLE_LIKED_VIDEOS",
+                payload: res.data.likes
+            });
+        }
+    } catch (e) {
+        console.log(e.error);
+    }
+}
+
+export const removeFromLikedVideos = async ({video, videoStateDispatch,showToast}) => {
+    try {
+        const res = await axios.delete(`/api/user/likes/${video._id}`);
+        if (res.status === 200) {
+            videoStateDispatch({
+                type: "HANDLE_LIKED_VIDEOS",
+                payload: res.data.likes
+            });
+        }
+    } catch (e) {
+        console.log(e.error);
+    }
+}

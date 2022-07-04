@@ -16,3 +16,8 @@ export const VideoInWatchList=(addedVideo,watchList) => {
     return (watchList.length === 0) ? false :
      watchList.some(video => video._id === addedVideo._id);
 }
+
+export const isVideoLiked=(video,likedList) => {
+    return (likedList.length === 0) ? false :
+    likedList.some(likedVideo => likedVideo._id === video._id);
+}

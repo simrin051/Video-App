@@ -17,6 +17,7 @@ export const videoStateReducer = (state, { type, payload }) => {
         case 'ADD_TO_HISTORY': return { ...state, watchHistory: payload };
         case 'REMOVE_FROM_HISTORY': return { ...state, watchHistory: payload };
         case 'CLEAR_HISTORY': return { ...state, watchHistory: [] };
+        case 'HANDLE_LIKED_VIDEOS': return {...state, likedVideos: payload}
         default: return { ...state };
     }
 }
