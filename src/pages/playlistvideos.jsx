@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { removeFromWatchLaterList } from "../services/video-service";
 import { useToast } from "../contexts/toast";
 import './pages.css';
+import { removeVideoFromPlayList } from "../services/playlist-service";
 
 export const PlayListVideos = () => {
     const location = useLocation();
@@ -16,7 +17,7 @@ export const PlayListVideos = () => {
         <div class="video-list-container">
             {playlist.videos.map((video) => {
                return (<div class="badge-container"><VideoWatchLaterCard video={video}/>
-               <i styleName={{backgroundColor:'red'}} class="video-delete-icon fa-solid fa-trash" aria-hidden="true" onClick={() => removeFromWatchLaterList({video, videoStateDispatch,showToast})} >aaaa</i>
+               <i styleName={{backgroundColor:'red'}} class="video-delete-icon fa-solid fa-trash" aria-hidden="true" onClick={() => removeVideoFromPlayList({playlistId: playlist._id,video, videoStateDispatch,showToast})} ></i>
                </div> )
             })}
         </div></div>}
