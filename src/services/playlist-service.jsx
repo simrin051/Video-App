@@ -35,8 +35,23 @@ export const CreateNewPlaylist = async ({ video, playlist, videoStateDispatch, s
     }
 }
 
+export const getVideosOfPlayList = async ({ playlistId, videoStateDispatch }) => {
+    try {
+        const res = await axios.post(`/api/user/playlists/${playlistId}`);
+        if (res.status === 200) {
+            videoStateDispatch({
+                type: "HANDLE_PLAYLIST",
+                payload: res.data.playlist
+            });
+        }
+        return res.data.videos;
+    } catch (e) {
+        console.log("error "+JSON.stringify(e));
+        console.log(e.error);
+    }
+}
+
 export const addVideoToPlayList = async ({ playlistId, video, videoStateDispatch, showToast }) => {
-    console.log("add video to playlist service call");
     try {
         const res = await axios.post(`/api/user/playlists/${playlistId}`, {
             video
@@ -56,10 +71,11 @@ export const addVideoToPlayList = async ({ playlistId, video, videoStateDispatch
 }
 
 
-export const removeVideoFromPlayList = async ({ playlistId, video, videoStateDispatch, showToast }) => {
+export const removeVideoFromPlayList = async ({ playlistId, playlist, video, videoStateDispatch, showToast }) => {
     try {
         const res = await axios.delete(`/api/user/playlists/${playlistId}/${video._id}`);
         if (res.status === 200) {
+            playlist.videos = res.data.playlist.videos;
             showToast({ title: "Removed video from playlist", type: "success" });
             videoStateDispatch({
                 type: "HANDLE_PLAYLIST",
