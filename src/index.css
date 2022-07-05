@@ -1,0 +1,280 @@
+.auth-container {
+  display: grid;
+  grid-template-columns: auto;
+  place-items: center;
+  justify-content: center;
+}
+
+.signUpLinks {
+  font-size: 1rem;
+  text-align: center;
+  color: var(--primary-color);
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 6px;
+  grid-auto-flow: column;
+  display: grid;
+}
+
+.form-heading {
+  font-size: 2rem;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.error-message {
+  color: var(--primary-color);
+}
+
+
+.nav-container {
+  color: black !important;
+  display: grid;
+  grid-template-columns: 15% 85%;
+}
+
+.nav-container .sidebar {
+  margin-top: 2rem;
+  overflow: hidden;
+  width: 15vw;
+}
+
+.sidebar-nav-link {
+  white-space: nowrap;
+  justify-content: center;
+  color: var(--primary-color);
+}
+
+.nav-icon {
+  margin-right: 5px;
+  color: var(--primary-color);
+}
+
+.filters {
+  display: inline-flex;
+  justify-content: left;
+  margin-top: 2rem;
+  color: var(--ternary-color);
+  width: 90%;
+  height: min-content;
+}
+
+.filter {
+  background-color: var(--primary-color);
+  padding: 5px;
+  font-size: large;
+  text-align: center;
+  line-height: 2rem;
+  border-radius: 10%;
+  width: 5rem;
+  height: 2rem;
+  margin-left: 2rem;
+}
+
+.dislike-btn {
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.video-player {
+  height: 70vw;
+  margin-top: 2rem;
+  margin-left: 20rem;
+  margin-right: 10rem;
+  position: relative;
+}
+
+.action-btns {
+  display: grid;
+  align-items: stretch;
+  justify-content: space-between;
+  grid-template-columns: repeat(3, 1fr);
+  position: absolute;
+  background-color: #F5FFFA;
+  width: 40rem;
+  text-align: center;
+}
+
+.action-btns i {
+  padding: 5px;
+}
+
+.nav-icon span {
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
+.video-detail {
+  display: flex;
+  width: 40rem;
+  margin-top: 1rem;
+}
+
+.video-detail img {
+  background-color: red;
+  width: 4rem;
+
+}
+
+.video-detail .thumbnail-title {
+  color: var(--primary-color);
+  font-size: medium;
+  margin-left: 5px;
+  white-space: nowrap;
+}
+
+hr {
+  width: 40rem;
+  position: absolute;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.center {
+  background: lightblue;
+  position: absolute;
+  float: left;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.video-list-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 5rem;
+  margin-left: 5px;
+}
+
+.video-channel-details {
+  background: lightblue;
+  font-size: 5px;
+  border-radius: 5px;
+  width: 30rem;
+  height: 4rem;
+  display: inline-block;
+}
+
+.video-channel-details .action-btn {
+  margin-right: 5px;
+  float: right;
+  margin-top: 2px;
+  font-size: 1rem;
+}
+
+.video-channel-details img {
+  width: 4rem;
+  height: 4rem;
+  margin-right: 5px;
+}
+
+.video-channel-details span {
+  font-size: 1rem;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.video-channel-details .menu-icon {
+  display: block;
+  padding: 5px;
+  background-color: lightblue;
+  color: black;
+  margin-left: -8rem;
+  margin-top: -1rem;
+  position: absolute;
+}
+
+.menu-icon .menu-nav-icon {
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.card-horizontal {
+  background-color: #F5FFFA;
+}
+
+.video-delete-icon {
+  top: 0px;
+  display: inline-block;
+  position:relative;
+  margin-left: 14rem;
+}
+
+.card-horizontal .card-container-horizontal .image-badge-container img {
+  height: 10rem;
+  width: 10rem;
+}
+
+.card-horizontal {
+  height: 10rem;
+  width: 30rem;
+  border: 5px solid var(--primary-color);
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.videos-list h2 {
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.playlist {
+  color: var(--primary-color);
+  font-size: medium;
+  position: absolute;
+  margin-left: 16rem;
+  margin-top: 2rem;
+  z-index: 1;
+  list-style: none;
+  background-color: #FBFBF9;
+}
+
+.playlist-item {
+  background-color: #FBFBF9;
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.playlist-create {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: red;
+  width: 5rem;
+  height: 5rem;
+}
+
+.playlist-create input {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 5px;
+  display: block;
+  position: relative;
+  background-color: #FBFBF9;
+}
+
+.playlist-create button {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.toastBody {
+  font-family: "Atlas Grotesk Web", Arial, Helvetica, sans-serif;
+  color: #10171D;
+  /* #10171D */
+  font-size: 0.875rem !important;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}

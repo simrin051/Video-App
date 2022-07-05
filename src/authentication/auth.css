@@ -1,0 +1,9 @@
+.incorrectcredentials {
+    color:#FF7276;;
+    text-align: center;
+    font-size: medium;
+}
+
+#signup-btn {
+   margin-top: 1.5rem; 
+}

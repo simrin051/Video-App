@@ -1,0 +1,48 @@
+.nav-container .sidebar {
+    margin-top: 6rem;
+}
+
+.mobile-sidebar {
+    display: none;
+}
+
+.mobile-sidebar-icons{
+ display: grid;
+ grid-template-columns: repeat(2, 1fr); 
+ margin-bottom: 4rem;  
+}
+
+.sidebar-nav-links li:hover , li:hover * {
+    background-color: transparent;
+    color: palevioletred !important;
+}
+
+@media only screen and (max-width: 1024px) {
+.nav-container .mobile-sidebar  {
+    background-color: var(--primary-color);
+    height: 100%;
+    left: 0;
+    padding: 5px;
+    position: fixed;
+    display: block;
+    top: 0;
+    width: 40vw;
+    z-index: 99;
+ }
+ 
+.mobile-sidebar .sidebar-nav-links {
+    margin-top: 6rem;
+}
+
+ .nav-container .mobile-sidebar  * {
+   color: black;
+ }
+
+ .sidebar {
+    display: none;
+ }
+
+ .sidebar-nav-icons {
+    padding: 7px;
+ }
+}

@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Cedarville Cursive');
+
+.nav-header {
+    display: grid;
+    grid-column: 1 / 2;
+}
+
+.nav-brand {
+    display: inline-block;
+    color: var(--primary-color);
+    width: 20vw;
+}
+
+span {
+    font-family: 'Cedarville Cursive';
+    font-size: 22px;
+}
+
+.nav-brand img {
+    height: 4rem;
+}
+
+.login-icon {
+    grid-column: 4;
+    text-align: right;
+    margin-right: 4rem;
+    font-size: 3rem;
+    color: var(--primary-color);
+}
+
+.fr {
+    float: right;
+}
+
+.header-menu-icon {
+   display: none; 
+}
+
+
+@media only screen and (max-width: 1024px) {
+.nav-brand {
+    width: 40vw;
+}
+.header-menu-icon {
+    margin-left: 2rem;
+    display: inline-block;
+}
+}
