@@ -31,12 +31,13 @@
 .nav-container {
   color: black !important;
   display: grid;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 15% 85%;
 }
 
 .nav-container .sidebar {
   margin-top: 2rem;
   overflow: hidden;
+  width: 15vw;
 }
 
 .sidebar-nav-link {
@@ -268,4 +269,12 @@ hr {
   color: #10171D;
   /* #10171D */
   font-size: 0.875rem !important;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
 }

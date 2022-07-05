@@ -1,14 +1,23 @@
+import React from "react";
 import video from "../../videoicon.png";
 import "./header.css";
 
-export const Header = () => {
-    return (<div class="nav-header">
+
+export class Header extends React.Component  {
+    showSideBar=(e)=> {
+        this.props.parentCallback();
+        e.preventDefault();
+    }    
+render() {  
+return (<div class="nav-header">
         <div class="nav-brand">
-            <img src={video} alt="video_icon" />
-            <span>Academia</span>
+            { <div class="header-menu-icon"><i class="fa-solid fa-bars nav-icon" onClick={this.showSideBar}></i></div>}
+                <img src={video} alt="video_icon" />
+                <span>Academia</span> 
         </div>
-        <div class="login-icon">
+        <div class="fr  login-icon">
             <i class="fa-solid fa-circle-user"></i>
         </div>
     </div>)
+}
 }

@@ -2,11 +2,13 @@
 
 .nav-header {
     display: grid;
+    grid-column: 1 / 2;
 }
 
 .nav-brand {
-    grid-column: 1 / 2;
+    display: inline-block;
     color: var(--primary-color);
+    width: 20vw;
 }
 
 span {
@@ -24,4 +26,23 @@ span {
     margin-right: 4rem;
     font-size: 3rem;
     color: var(--primary-color);
+}
+
+.fr {
+    float: right;
+}
+
+.header-menu-icon {
+   display: none; 
+}
+
+
+@media only screen and (max-width: 1024px) {
+.nav-brand {
+    width: 40vw;
+}
+.header-menu-icon {
+    margin-left: 2rem;
+    display: inline-block;
+}
 }
