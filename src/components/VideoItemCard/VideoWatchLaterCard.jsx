@@ -1,6 +1,7 @@
 import { useToast } from "../../contexts/toast";
 import { useVideoContext } from "../../contexts/videos";
 import { removeFromWatchLaterList } from "../../services/video-service";
+import { displayContentOfMaxLength } from "../../utils/utils";
 import "./ItemCard.css";
 export const VideoWatchLaterCard = ({ video }) => {
     return (
@@ -11,10 +12,9 @@ export const VideoWatchLaterCard = ({ video }) => {
                     <i class="fa fa-play-circle fa-1x videoplayicon"></i>
                 </div>
                 <div class="text-container">
-                    <span class="content-title">{video.title}</span>
+                        <span class="content-title">{displayContentOfMaxLength(video.title)}</span>
                     <div class="action-btn-container">
                         <span class="sub-title">{video.categoryName}</span>
-                        {/**<i onClick={() => removeFromWatchLaterList({video, videoStateDispatch,showToast})} class="video-delete-icon fa-solid fa-trash"></i> **/}
                     </div>
                 </div>
             </div></div >)

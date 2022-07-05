@@ -21,3 +21,8 @@ export const isVideoLiked=(video,likedList) => {
     return (likedList.length === 0) ? false :
     likedList.some(likedVideo => likedVideo._id === video._id);
 }
+
+export const displayContentOfMaxLength = (text) => {
+    const MAX_LENGTH = 15;
+    return text.length<=MAX_LENGTH? text: text.substring(0, MAX_LENGTH)+'...';
+}
