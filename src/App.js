@@ -3,9 +3,6 @@ import { SignIn } from './authentication/SignIn';
 import { SignUp } from './authentication/SignUp';
 import { Home } from './pages/home';
 import { VideoItemCard } from './components/VideoItemCard/VideoItemCard';
-
-import Mockman from "mockman-js";
-
 import {
   BrowserRouter as Router,
   Route, Routes
@@ -22,6 +19,7 @@ import { useVideoContext } from './contexts/videos';
 import { PlayListVideos } from "./pages/playlistvideos";
 import { History } from "./pages/history";
 import PrivateRoute from "./authentication/PrivateRoute";
+import { Liked } from "./pages/liked";
 
 
 function App() {
@@ -47,6 +45,7 @@ function App() {
 
         {/** Private Routes **/}
       <Route element={<PrivateRoute/>}>
+        <Route path="/liked" element={<Liked/>}/>
         <Route path="/playlist" element={<PlayList/>} />
         <Route path="/watchlater" element={<WishLaterList/>} />
         <Route path="/playlistvideos" element={<PlayListVideos />} />
