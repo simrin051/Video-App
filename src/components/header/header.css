@@ -36,6 +36,11 @@ span {
    display: none; 
 }
 
+.signup-nav-link {
+    font-size: large;
+    border-bottom: 3px solid  var(--primary-color);
+    margin-right: 5px;
+}
 
 @media only screen and (max-width: 1024px) {
 .nav-brand {

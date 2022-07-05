@@ -1,6 +1,7 @@
 import React from "react";
 import video from "../../videoicon.png";
 import "./header.css";
+import { Link } from 'react-router-dom';
 
 
 export class Header extends React.Component  {
@@ -16,6 +17,7 @@ return (<div class="nav-header">
                 <span>Academia</span> 
         </div>
         <div class="fr  login-icon">
+        <Link class="signup-nav-link" to="/signup">Signup</Link>
             <i class="fa-solid fa-circle-user"></i>
         </div>
     </div>)
