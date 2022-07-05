@@ -8,9 +8,7 @@ import Mockman from "mockman-js";
 
 import {
   BrowserRouter as Router,
-  Switch,
-  Route, Routes,
-  Link
+  Route, Routes
 } from "react-router-dom";
 import { VideoListCard } from "./components/VideoItemCard/VideoListCard";
 import { WishLaterList } from "./pages/watchlaterlist";
@@ -23,6 +21,7 @@ import { useEffect } from "react";
 import { useVideoContext } from './contexts/videos';
 import { PlayListVideos } from "./pages/playlistvideos";
 import { History } from "./pages/history";
+import PrivateRoute from "./authentication/PrivateRoute";
 
 
 function App() {
@@ -45,16 +44,16 @@ function App() {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/videoList" element={<VideoListCard />} />
-        <Route path="/playlist" element={<PlayList />} />
-        <Route path="/mock" element={<Mockman endPointsList={["/api/auth/signup", "/api/videos", "/api/user/playlist"]} />} />
-        <Route path="/watchlater" element={<WishLaterList />} />
+
+        {/** Private Routes **/}
+      <Route element={<PrivateRoute/>}>
+        <Route path="/playlist" element={<PlayList/>} />
+        <Route path="/watchlater" element={<WishLaterList/>} />
         <Route path="/playlistvideos" element={<PlayListVideos />} />
         <Route path="/history" element={<History />} />
+      </Route>
       </Routes>
-
-
-
-    </div>
+      </div>
   );
 }
 
