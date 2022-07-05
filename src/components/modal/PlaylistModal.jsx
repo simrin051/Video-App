@@ -1,11 +1,10 @@
 import { useState } from "react";
-import './modal.css';
-import { PlayList } from './../../pages/PlayList/playlist';
-import { useVideoContext } from "../../contexts/videos";
 import { usePlaylistModal } from "../../contexts/playlistmodal";
 import { useToast } from "../../contexts/toast";
-import { CreateNewPlaylist,addVideoToPlayList,removeVideoFromPlayList } from "../../services/playlist-service";
+import { useVideoContext } from "../../contexts/videos";
+import { addVideoToPlayList, CreateNewPlaylist, removeVideoFromPlayList } from "../../services/playlist-service";
 import { VideoInPlaylist } from "../../utils/utils";
+import './modal.css';
 
 export const PlaylistModal = () => {
     const {
@@ -37,21 +36,31 @@ export const PlaylistModal = () => {
     };
 
     const playlistCheckboxChanged=( playlistId,title,isVideoInPlaylist)=>{
-        console.log("is video in playlist "+isVideoInPlaylist);
         if (!isVideoInPlaylist) {
             // add video to playlist
-            console.log("add video to playlist");
             addVideoToPlayList({  playlistId, video, videoStateDispatch, showToast });
         } else {
             // remove video from playlist
-            console.log("remove video from playlist ");
             removeVideoFromPlayList({ playlistId, video, videoStateDispatch, showToast });
         }
     }
-    // add to new  playlist form
-    return (
-        <div  class="container">{ displayModal && (<div className="flex-col modal-section-overlay"><div className="playlists-dialog-list"><h3 className="  playlist-title">PlayList</h3>
 
+    const closeCreatePlaylistDialog = () => {
+        setShowCreatePlaylistForm(false);
+    }
+
+    const closePlaylistDialog = () => {
+        setDisplayModal(false);
+    }
+    
+    return (
+        <div  >{ displayModal && (
+            <div class="container">
+        
+        <div className="flex-col modal-section-overlay"><div className="playlists-dialog-list">
+        <i class="create-playlist-cross-icon fa fa-times" aria-hidden="true" onClick={()=>closePlaylistDialog()}></i>
+            <h3 className="  playlist-title">PlayList</h3>
+                 
             <div className="playlistmodal">{listPlayList.map((playlist) => {
                 const {_id, title} = playlist;
                 isVideoInPlaylist = VideoInPlaylist(
@@ -70,10 +79,10 @@ export const PlaylistModal = () => {
                 )
             })}  </div>
             <button id="playlist-btn" onClick={() => setShowCreatePlaylistForm(true)}>Add to new PlayList</button>
-        </div ></div>)}
-
+        </div ></div></div>)}
             {
-                showCreatePlaylistForm && (<div className="flex-col modal-section-overlay"><form className="playlist-form" onSubmit={handleSubmit}>
+                showCreatePlaylistForm && (<div className="flex-col modal-section-overlay"><form className="create-playlist-form" onSubmit={handleSubmit}>
+                    <i class="create-playlist-cross-icon fa fa-times" aria-hidden="true" onClick={()=>closeCreatePlaylistDialog()}></i>
                     <input type="text" id="playListName" name="playlistName" value={playlist.title} placeholder="playlist name" onChange={(e) =>
                         setPlaylist({ ...playlist, title: e.target.value })} />
                     <input type="text" id="playListDesc" name="playListDesc" value={playlist.description} placeholder="playlist desc" onChange={(e) =>
