@@ -21,7 +21,7 @@ export const UserContextProvider = ({ children }) => {
     }
     const [state, userDispatch] = useReducer(authenticationReducer, initialState);
 
-    const signUpUser = async (data, fromPathNavigate) => {
+    const signUpUser = async (data, fromPathNavigate,setSignupError) => {
         try {
             const response = await axios.post(`/api/auth/signup`, JSON.stringify(data));
             if (response.status == 201) {
@@ -38,6 +38,8 @@ export const UserContextProvider = ({ children }) => {
                 });
                 console.log(" respose data encoded token " + localStorage.getItem("session").token);
                 navigation(fromPathNavigate);
+            } else if (response.status == 422) {
+                setSignupError("Account already exists");
             }
         } catch (err) {
             console.log(err);
@@ -60,6 +62,8 @@ export const UserContextProvider = ({ children }) => {
                 });
                 axios.defaults.headers.common['Authorization'] = response.data.encodedToken;
                 navigation(fromPathNavigate);
+            } else {
+                setSigninError("incorrect credentials");    
             }
 
         } catch (err) {

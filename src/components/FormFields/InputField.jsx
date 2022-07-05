@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-const InputText = ({ id, value, onChange, label }) => {
+const InputText = ({ id, value, onChange,onFocus, label }) => {
   return (
     <div className="form-field">
       <label className="input-label">{label}</label>
-      <input type="text" id={id} value={value} onChange={onChange} />
+      <input type="text" id={id} value={value} onChange={onChange} onFocus = {onFocus} />
     </div>
   );
 };
 
-const InputPassword = ({ id, value, onChange, label }) => {
+const InputPassword = ({ id, value, onChange, onFocus, label }) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="form-field">
@@ -19,6 +19,7 @@ const InputPassword = ({ id, value, onChange, label }) => {
         id={id}
         value={value}
         onChange={onChange}
+        onFocus = {onFocus}
       />
     </div>
   );

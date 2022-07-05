@@ -6,9 +6,9 @@ import { formsReducer } from './../reducers/reducer';
 import { errorReducer } from './../reducers/reducer';
 import { useUserContext } from './../contexts/user';
 import { useLocation } from 'react-router-dom';
+import './auth.css';
 
 export const SignIn = () => {
-
     const initialState = {
         email: "",
         password: ""
@@ -108,11 +108,11 @@ export const SignIn = () => {
                         <button type="button" className="button" onClick={(e) => handleSubmit(e)} >Login</button>
                     </div>
                 </form>
-                <small class="incorrectcredentials">{error}</small>
+               {error &&  <small class="incorrectcredentials">{error}</small>}
                 <div className="signUpLinks">
                     <p><small>Still don't have an account?</small> <Link to="/signup" class="Link">SignUp</Link></p>
                 </div>
-            </div >
+                </div >
         </div >
     )
 }

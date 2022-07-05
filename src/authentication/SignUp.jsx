@@ -1,12 +1,12 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import { InputText, InputPassword } from './../components/FormFields/InputField';
 import { useLocation } from 'react-router-dom';
 import { useUserContext } from "./../contexts/user";
 import { formsReducer } from './../reducers/reducer';
 import { errorReducer } from './../reducers/reducer';
+import './auth.css';
 
 export const SignUp = () => {
-
     const state = useLocation();
     const fromPathNavigate = state.from ? state.from : '/';
     const initialState = {
@@ -23,6 +23,7 @@ export const SignUp = () => {
     }
     const [formState, formDispatch] = useReducer(formsReducer, initialState);
     const [errorState, errorDispatch] = useReducer(errorReducer, errorInitialState);
+    const [errorinSignup, setSignupError] = useState();
     const validEmailRegex = RegExp(
         /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
     );
@@ -89,7 +90,7 @@ export const SignUp = () => {
         }
         checkForFormValidity()
         if (!errorFlag) {
-            signUpUser(authPayload, fromPathNavigate);
+            signUpUser(authPayload, fromPathNavigate,setSignupError);
         };
     }
     return (
@@ -159,6 +160,7 @@ export const SignUp = () => {
                         label={"Password"}
                     />
                     <small class="incorrectcredentials">{errorState && errorState.password}</small>
+                    {errorinSignup &&  <small class="incorrectcredentials">{errorinSignup}</small>}
                     <button type="submit" id="signup-btn" className="button" onClick={HandleSubmit}>Signup</button>
                 </form>
             </div >
