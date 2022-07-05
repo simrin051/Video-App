@@ -1,11 +1,10 @@
-import { useVideoContext } from "../contexts/videos";
-import { useLocation } from 'react-router-dom';
-import { removeFromWatchLaterList } from "../services/video-service";
-import { useToast } from "../contexts/toast";
-import './pages.css';
-import { getVideosOfPlayList, removeVideoFromPlayList } from "../services/playlist-service";
 import { useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import { VideoPlaylistCard } from "../components/VideoItemCard/VideoPlaylistCard";
+import { useToast } from "../contexts/toast";
+import { useVideoContext } from "../contexts/videos";
+import { getVideosOfPlayList, removeVideoFromPlayList } from "../services/playlist-service";
+import './pages.css';
 
 export const PlayListVideos = () => {
     const location = useLocation();

@@ -1,5 +1,3 @@
-
-import ReactPlayer from 'react-player';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useVideoContext } from '../../contexts/videos';

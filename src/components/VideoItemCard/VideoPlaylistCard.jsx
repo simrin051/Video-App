@@ -1,6 +1,3 @@
-import { useToast } from "../../contexts/toast";
-import { useVideoContext } from "../../contexts/videos";
-import { removeFromWatchLaterList } from "../../services/video-service";
 import { displayContentOfMaxLength } from "../../utils/utils";
 import "./ItemCard.css";
 export const VideoPlaylistCard = ({ video }) => {

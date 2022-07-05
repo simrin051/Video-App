@@ -15,7 +15,6 @@ export const Toast = () => {
     return (toastList.length && <div className="toast-container">
         {toastList.map((toast) => {
             const { title, type, id } = toast;
-            console.log("title " + title + "type  " + type + " ");
             return (<div className="toast-container"><button className="toastcloseicon">
                 X
             </button>

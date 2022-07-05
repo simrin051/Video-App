@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const getAllPlayList = async ({ videoStateDispatch }) => {
     try {
         const res = await axios.get("/api/user/playlists");

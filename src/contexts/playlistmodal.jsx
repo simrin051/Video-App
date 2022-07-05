@@ -1,6 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { getAllPlayList } from './../services/playlist-service';
-import { useVideoContext } from "./videos";
+import { createContext, useContext, useState } from "react";
 
 const PlaylistModalContext = createContext();
 
@@ -27,3 +25,4 @@ const usePlaylistModal = () => {
     return context;
 };
 export { PlaylistModalProvider, usePlaylistModal };
+

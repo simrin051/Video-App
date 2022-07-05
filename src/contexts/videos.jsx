@@ -2,7 +2,6 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { videoStateReducer } from "../reducers/reducer";
 import { FetchCategories, FetchVideoList } from './../services/video-service';
-import { } from './../services/playlist-service';
 
 const VideoContext = createContext();
 const VideoContextProvider = ({ children }) => {

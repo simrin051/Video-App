@@ -50,20 +50,16 @@ export const getWatchLaterList = async (videoDispatch) => {
 }
 
 export const addToWatchLaterList = async ({video, videoStateDispatch,showToast}) => {
-    console.log("inside add to watch later list"+JSON.stringify(video));
     try {
         const res = await axios.post("/api/user/watchlater", {video});
         if (res.status === 201) {
-            console.log("added to watch later list" +JSON.stringify(res.data.watchlater));
             videoStateDispatch({
                 type: "ADD_TO_WATCHLATER_LIST",
                 payload: res.data.watchlater
             });  
             showToast({ title: "Video added to watch later list", type: "success" });
-            console.log(" toast - added the video");
         }
     } catch (e) {
-        console.log("inside error "+JSON.stringify(e));
         console.log(e.error);
     }
 }
@@ -73,7 +69,6 @@ export const removeFromWatchLaterList = async ({video, videoStateDispatch,showTo
     try {
         const res = await axios.delete(`/api/user/watchlater/${video._id}`);
         if (res.status === 200) {
-            console.log("removed from watch later list");
             videoStateDispatch({
                 type: "REMOVE_FROM_WATCHLATER_LIST",
                 payload: res.data.watchlater
@@ -90,7 +85,6 @@ export const addToLikedVideos = async ({video, videoStateDispatch,showToast}) =>
     try {
         const res = await axios.post(`/api/user/likes`,{video});
         if (res.status === 201) {
-            console.log("added video to liked videos "+JSON.stringify(res.data.likes));
             videoStateDispatch({
                 type: "HANDLE_LIKED_VIDEOS",
                 payload: res.data.likes
