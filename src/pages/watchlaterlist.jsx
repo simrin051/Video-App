@@ -1,4 +1,4 @@
-import { VideoWatchLaterCard } from "../components/VideoItemCard/VideoWatchLaterCard";
+import { VideoPlaylistCard } from "../components/VideoItemCard/VideoPlaylistCard";
 import { useToast } from "../contexts/toast";
 import { useVideoContext } from "../contexts/videos";
 import { removeFromWatchLaterList } from "../services/video-service";
@@ -12,7 +12,7 @@ export const WishLaterList = () => {
         < h2 > Total number of items {videoList.length}</h2 >
         <div class="video-list-container">
             {videoList.map((video) => {
-                return (<div class="badge-container"><VideoWatchLaterCard video={video}/>
+                return (<div class="badge-container"><VideoPlaylistCard video={video}/>
                  <i class="video-delete-icon fa-solid fa-trash" aria-hidden="true" onClick={() => removeFromWatchLaterList({video, videoStateDispatch,showToast})} ></i>
                 </div>)
             })}

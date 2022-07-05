@@ -3,7 +3,7 @@ import { useVideoContext } from "../../contexts/videos";
 import { removeFromWatchLaterList } from "../../services/video-service";
 import { displayContentOfMaxLength } from "../../utils/utils";
 import "./ItemCard.css";
-export const VideoWatchLaterCard = ({ video }) => {
+export const VideoPlaylistCard = ({ video }) => {
     return (
         <div class="card-horizontal">
             <div class="card-container-horizontal">

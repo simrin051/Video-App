@@ -1,5 +1,4 @@
-import { VideoListCard } from "../components/VideoItemCard/VideoListCard";
-import { VideoWatchLaterCard } from "../components/VideoItemCard/VideoWatchLaterCard";
+import { VideoPlaylistCard } from "../components/VideoItemCard/VideoPlaylistCard";
 import { useToast } from "../contexts/toast";
 import { useVideoContext } from "../contexts/videos";
 import { clearHistoryPlaylist, removeFromHistoryPlaylist } from "../services/playlist-service";
@@ -14,7 +13,7 @@ export const History = () => {
         {videoList.length>0 && <button class="clear-history-btn" onClick={()=>clearHistoryPlaylist({ videoStateDispatch, showToast })}>Clear History</button>}
         <div class="video-list-container">
             {videoList.map((video) => {
-                return (<div class="badge-container"><VideoWatchLaterCard video={video}/>
+                return (<div class="badge-container"><VideoPlaylistCard video={video}/>
                     <i class="video-delete-icon fa-solid fa-trash" aria-hidden="true" onClick={() => removeFromHistoryPlaylist({video, videoStateDispatch,showToast})} ></i>
                </div> )
             })}
