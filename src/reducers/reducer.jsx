@@ -1,5 +1,4 @@
 export const videoStateReducer = (state, { type, payload }) => {
-    console.log("nside reducer " + type+ "  payload "+JSON.stringify(payload));
     switch (type) {
         case "GET_CATEGORIES": return { ...state, categoryList: payload };
         case "GET_VIDEOS": return { ...state, videoList: payload };
@@ -27,11 +26,13 @@ export const authenticationReducer = (state, { type, payload }) => {
         case "LOGIN_USER": return {
             ...state,
             token: payload.token,
-            userName: payload.userName
+            userName: payload.userName,
+            firstName: payload.firstName
         }
         case "SIGNUP_USER": return {
             ...state, token: payload.token,
-            userName: payload.userName
+            userName: payload.userName,
+            firstName: payload.firstName
         }
         default: return state;
     }
