@@ -27,11 +27,13 @@ export const authenticationReducer = (state, { type, payload }) => {
         case "LOGIN_USER": return {
             ...state,
             token: payload.token,
-            userName: payload.userName
+            userName: payload.userName,
+            firstName: payload.firstName
         }
         case "SIGNUP_USER": return {
             ...state, token: payload.token,
-            userName: payload.userName
+            userName: payload.userName,
+            firstName: payload.firstName
         }
         default: return state;
     }

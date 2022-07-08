@@ -17,7 +17,8 @@ export const UserContextProvider = ({ children }) => {
 
     const initialState = {
         token: '',
-        userName: ''
+        userName: '',
+        firstName: ''
     }
     const [state, userDispatch] = useReducer(authenticationReducer, initialState);
 
@@ -31,12 +32,11 @@ export const UserContextProvider = ({ children }) => {
                         username: response.data.createdUser.email,
                         token: response.data.encodedToken
                     })
-                );
+                ); 
                 userDispatch({
                     type: 'LOGIN_USER',
-                    payload: { token: response.data.encodedToken, userName: response.data.createdUser.email }
+                    payload: { token: response.data.encodedToken, userName: response.data.createdUser.email,firstName: response.data.createdUser.firstName }
                 });
-                console.log(" respose data encoded token " + localStorage.getItem("session").token);
                 navigation(fromPathNavigate);
             } else if (response.status == 422) {
                 setSignupError("Account already exists");

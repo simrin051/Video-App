@@ -42,6 +42,10 @@ span {
     margin-right: 5px;
 }
 
+.nav-icon-text {
+    display: block;
+}
+
 @media only screen and (max-width: 1024px) {
 .nav-brand {
     width: 40vw;
