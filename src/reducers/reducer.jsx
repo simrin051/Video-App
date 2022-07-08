@@ -1,5 +1,4 @@
 export const videoStateReducer = (state, { type, payload }) => {
-    console.log("nside reducer " + type+ "  payload "+JSON.stringify(payload));
     switch (type) {
         case "GET_CATEGORIES": return { ...state, categoryList: payload };
         case "GET_VIDEOS": return { ...state, videoList: payload };

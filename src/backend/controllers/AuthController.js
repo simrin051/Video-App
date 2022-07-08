@@ -41,7 +41,6 @@ export const signupHandler = function (schema, request) {
       watchlater: [],
     };
     const createdUser = schema.users.create(newUser);
-    console.log("react app jwt secret "+process.env.REACT_APP_JWT_SECRET);
     const encodedToken = sign({ _id, email }, process.env.REACT_APP_JWT_SECRET);
    
     return new Response(201, {}, { createdUser, encodedToken });
