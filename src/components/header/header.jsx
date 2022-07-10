@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import { useUserContext } from "../../contexts/user";
 import { useNavigate } from 'react-router-dom';
 
-export const Header = () =>  {
+export const Header = (props) =>  {
     const showSideBar=(e)=> {
-        this.props.parentCallback();
+        props.parentCallback();
         e.preventDefault();
     }
 
