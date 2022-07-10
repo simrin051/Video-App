@@ -20,7 +20,7 @@ import { PlayListVideos } from "./pages/playlistvideos";
 import { History } from "./pages/history";
 import PrivateRoute from "./authentication/PrivateRoute";
 import { Liked } from "./pages/liked";
-
+import icon from "./videoicon.png";
 
 function App() {
 
@@ -30,6 +30,8 @@ function App() {
 } = useVideoContext();
 
   useEffect(() => {
+    document.img = <img src={icon} alt="video_icon" />;
+    document.title = "Academia";
     getAllPlayList({videoStateDispatch});
   });
 

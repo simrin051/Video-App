@@ -1,5 +1,5 @@
 import React from "react";
-import video from "../../videoicon.png";
+import icon from "../../videoicon.png";
 import "./header.css";
 import { Link } from 'react-router-dom';
 import { useUserContext } from "../../contexts/user";
@@ -27,7 +27,7 @@ export const Header = () =>  {
 return (<div class="nav-header">
         <div class="nav-brand">
             { <div class="header-menu-icon"><i class="fa-solid fa-bars nav-icon" onClick={showSideBar}></i></div>}
-                <img src={video} alt="video_icon" />
+                <img src={icon} alt="video_icon" />
                 <span>Academia</span> 
         </div>
         <div class="login-icon">
