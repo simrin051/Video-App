@@ -57,7 +57,7 @@ export const UserContextProvider = ({ children }) => {
                 );
                 userDispatch({
                     type: 'LOGIN_USER',
-                    payload: { token: response.data.encodedToken, userName: response.data.foundUser.email },
+                    payload: { token: response.data.encodedToken, userName: response.data.foundUser.email,firstName: response.data.foundUser.firstName },
                 });
                 axios.defaults.headers.common['Authorization'] = response.data.encodedToken;
                 navigation(fromPathNavigate);

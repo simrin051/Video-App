@@ -12,8 +12,13 @@ export const Header = () =>  {
     }
 
     let navigate = useNavigate();
+    const { state, userDispatch } = useUserContext();
 
     const logout=() => {
+        userDispatch({
+            type: "LOGOUT_USER",
+            payload: ""
+        });
         localStorage.removeItem("session");
         navigate('/signin');
     }

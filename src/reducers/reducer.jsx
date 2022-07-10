@@ -34,6 +34,10 @@ export const authenticationReducer = (state, { type, payload }) => {
             userName: payload.userName,
             firstName: payload.firstName
         }
+        case "LOGOUT_USER": return {
+            ...state, token: "",userName: "",
+            firstName: "",
+        }
         default: return state;
     }
 }
